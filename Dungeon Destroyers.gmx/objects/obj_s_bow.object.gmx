@@ -79,7 +79,7 @@ if durability &gt; 100 {durability = 100}
             <string>var i
 if shoot = true &amp;&amp; image_index = 0
 {
-    image_speed = 0.5*delta
+    image_speed = 0.25*delta
     shoot = false
     durability -= 0.5
     i = instance_create(x,y,obj_arrow)

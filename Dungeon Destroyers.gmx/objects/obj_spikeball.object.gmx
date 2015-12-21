@@ -56,31 +56,31 @@ event_inherited()
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[3] = (1*fps_real)
+            <string>alarm[3] = (1.5*fps_real)
 var i;
 i = instance_create(x,y,obj_spike);
-i.speed = 4*delta
+i.speed = 3.5*delta
 i.direction = 0
 i = instance_create(x,y,obj_spike);
-i.speed = 4*delta
+i.speed = 3.5*delta
 i.direction = 45
 i = instance_create(x,y,obj_spike);
-i.speed = 4*delta
+i.speed = 3.5*delta
 i.direction = 90
 i = instance_create(x,y,obj_spike);
-i.speed = 4*delta
+i.speed = 3.5*delta
 i.direction = 135
 i = instance_create(x,y,obj_spike);
-i.speed = 4*delta
+i.speed = 3.5*delta
 i.direction = 180
 i = instance_create(x,y,obj_spike);
-i.speed = 4*delta
+i.speed = 3.5*delta
 i.direction = 225
 i = instance_create(x,y,obj_spike);
-i.speed = 4*delta
+i.speed = 3.5*delta
 i.direction = 270
 i = instance_create(x,y,obj_spike);
-i.speed = 4*delta
+i.speed = 3.5*delta
 i.direction = 315
 
 </string>

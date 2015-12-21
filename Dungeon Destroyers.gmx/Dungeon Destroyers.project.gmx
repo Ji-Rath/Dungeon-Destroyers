@@ -143,6 +143,7 @@
         <object>objects\obj_ckey</object>
         <object>objects\obj_dkey</object>
       </objects>
+      <object>objects\obj_enemy_projectile_parent</object>
       <object>objects\obj_arrow</object>
       <object>objects\obj_bone</object>
       <object>objects\obj_fireball</object>
@@ -153,7 +154,6 @@
       <object>objects\obj_spear</object>
       <object>objects\obj_catana</object>
       <object>objects\obj_spike</object>
-      <object>objects\obj_enemy_projectile_parent</object>
     </objects>
     <objects name="Buttons">
       <object>objects\obj_begin</object>

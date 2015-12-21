@@ -114,55 +114,61 @@ if irandom(4) = 0
 {
     obj=instance_create(x,y,obj_bow_item);
     with (obj) motion_set(random(270),4*delta);
-    obj_bow_item.friction = 0.05*delta
+    obj_bow_item.friction = 0.08*delta
 }
 if irandom(4) = 0
 {
     obj=instance_create(x,y,obj_catana_item);
     with (obj) motion_set(random(270),4*delta);
-    obj_catana_item.friction = 0.05*delta
+    obj_catana_item.friction = 0.08*delta
 }
 if irandom(4) = 0
 {
     obj=instance_create(x,y,obj_s_bow_item);
     with (obj) motion_set(random(270),4*delta);
-    obj_s_bow_item.friction = 0.05*delta
+    obj_s_bow_item.friction = 0.08*delta
 }
 if irandom(4) = 0
 {
     obj=instance_create(x,y,obj_spear_item);
     with (obj) motion_set(random(270),4*delta);
-    obj_spear_item.friction = 0.05*delta
+    obj_spear_item.friction = 0.08*delta
 }
 if irandom(5) = 0
 {
     obj=instance_create(x,y,obj_boomerrang_item);
     with (obj) motion_set(random(270),4*delta);
-    obj_boomerrang_item.friction = 0.05*delta
+    obj_boomerrang_item.friction = 0.08*delta
 }
 if irandom(4) = 0
 {
     obj=instance_create(x,y,obj_healing_potion);
     with (obj) motion_set(random(270),4*delta);
-    obj_healing_potion.friction = 0.05*delta
+    obj_healing_potion.friction = 0.08*delta
 }
 if irandom(4) = 0
 {
     obj=instance_create(x,y,obj_durability_potion);
     with (obj) motion_set(random(270),4*delta);
-    obj_durability_potion.friction = 0.05*delta
+    obj_durability_potion.friction = 0.08*delta
 }
 if irandom(4) = 0
 {
     obj=instance_create(x,y,obj_crit_potion);
     with (obj) motion_set(random(270),4*delta);
-    obj_crit_potion.friction = 0.05*delta
+    obj_crit_potion.friction = 0.08*delta
 }
 if irandom(3) = 0
 {
     obj=instance_create(x,y,obj_ckey);
     with (obj) motion_set(random(270),4*delta);
-    obj_ckey.friction = 0.05*delta
+    obj_ckey.friction = 0.08*delta
+}
+if irandom(3) = 0
+{
+    obj=instance_create(x,y,obj_ckey);
+    with (obj) motion_set(random(270),4*delta);
+    obj_ckey.friction = 0.08*delta
 }
 
 
@@ -175,25 +181,36 @@ if irandom(3) = 0
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
-        <id>526</id>
-        <kind>0</kind>
+        <id>603</id>
+        <kind>7</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_font</functionname>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>12</kind>
-            <font>fnt_small</font>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>1</string>
+            <kind>1</kind>
+            <string>///Draw Text to open chest
+if place_meeting(x,y,obj_player) &amp;&amp; collected = false &amp;&amp; global.ckey &gt;= 2
+{
+    draw_set_font(fnt_small);
+    draw_set_halign(fa_center);
+    draw_text(x,y-20,'Press SPACE to open')
+}
+
+if place_meeting(x,y,obj_player) &amp;&amp; collected = false &amp;&amp; global.ckey &lt; 2
+{
+    draw_set_font(fnt_small);
+    draw_set_halign(fa_center);
+    draw_text(x,y-20,'Not enough keys!')
+}
+
+</string>
           </argument>
         </arguments>
       </action>
@@ -215,38 +232,6 @@ if irandom(3) = 0
             <kind>1</kind>
             <string>///draw_sprite_shadow(sprite, subimg, x, y, shadow length, shadow direction, shadow color, shadow alpha);
 draw_sprite_shadow(spr_locked_chest, image_index, x, y, 2, 315, c_black, 0.5)
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if place_meeting(x,y,obj_player)
-&amp;&amp; global.ckey &gt; 1
-&amp;&amp; collected = false {
-draw_text(x,y-10,'Press SPACE to open')
-}
-
-if place_meeting(x,y,obj_player)
-&amp;&amp; global.ckey &lt; 2
-&amp;&amp; collected = false {
-draw_text(x,y-10,'Need more keys!')
-}
-
 </string>
           </argument>
         </arguments>

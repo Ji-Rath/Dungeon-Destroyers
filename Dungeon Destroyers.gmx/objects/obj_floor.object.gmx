@@ -39,13 +39,10 @@ you would just give each object a new name vbariable and spawn chance variable
 
 
 chest_spawn = irandom(80); //chance to spawn a treasure chest
-
 enemy_spawn = irandom(15); //chance to spawn an enemy
-
-background_spawn = irandom(5)
-
+background_spawn = irandom(10)
 spike_spawn = irandom(80)
-
+if place_meeting(x,y,obj_floor) {instance_destroy();}
 alarm[0] = 30
 </string>
           </argument>

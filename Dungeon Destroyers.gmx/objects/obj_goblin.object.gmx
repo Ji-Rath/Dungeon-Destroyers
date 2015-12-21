@@ -30,7 +30,6 @@ image_speed = .1*delta
 hp = 12
 spd = 1.1;
 normalspd = spd
-alarm[3] = 10
 damage = 30
 event_inherited()
 </string>

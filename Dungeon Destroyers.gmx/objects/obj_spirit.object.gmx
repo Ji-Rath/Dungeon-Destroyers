@@ -58,7 +58,7 @@ event_inherited()
 {
     move_x = obj_player.x;
     move_y = obj_player.y;
-    move_towards_point(move_x,move_y,0)
+    move_towards_point(move_x,move_y,spd*delta)
 }
 
 if hspeed &gt; 0 {image_xscale = -1}

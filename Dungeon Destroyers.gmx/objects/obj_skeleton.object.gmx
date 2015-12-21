@@ -6,7 +6,7 @@
   <depth>1</depth>
   <persistent>0</persistent>
   <parentName>obj_enemy_parent</parentName>
-  <maskName>&lt;undefined&gt;</maskName>
+  <maskName>spr_ratman</maskName>
   <events>
     <event eventtype="0" enumb="0">
       <action>
@@ -25,13 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>spd = 1.2
+            <string>spd = 1.1
 normalspd = spd
 canhit = true
 image_speed = .1*delta
 hp = 8
 shoot = true
 damage = 10
+event_inherited();
 </string>
           </argument>
         </arguments>
@@ -83,17 +84,20 @@ shoot = true;
 {
     move_x = obj_player.x
     move_y = obj_player.y
-    mp_potential_step(obj_player.x,obj_player.y,0,solid)
+    if speed &gt; 0 {mp_potential_step(obj_player.x,obj_player.y,0,solid)}
+    else {mp_potential_step(obj_player.x,obj_player.y,spd*delta,solid)}
     image_speed = .1*delta
 }
-else {if distance_to_object(obj_player) &lt; 150 {speed = 0; image_speed = 0}}
-if distance_to_object(obj_player) &lt; 150 &amp;&amp; shoot = true
+else if distance_to_object(obj_player) &lt; 150 &amp;&amp; shoot = true
 {
+    speed = 0; 
+    image_speed = 0
     var i
     instance_create(x,y,obj_bone)
     shoot = false
     alarm[3] = (1*fps_real)
 }
+
 event_inherited()
 </string>
           </argument>

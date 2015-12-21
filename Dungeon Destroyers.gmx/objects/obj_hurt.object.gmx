@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_alpha = 1
+            <string>image_alpha = 1 - (obj_player.hp/100)
 </string>
           </argument>
         </arguments>
@@ -49,7 +49,7 @@
           <argument>
             <kind>1</kind>
             <string>///Fade effect
-image_alpha -= 0.03*delta
+image_alpha -= 0.04*delta
 if image_alpha &lt; 0.05 {instance_destroy()}
 </string>
           </argument>
@@ -73,7 +73,7 @@ if image_alpha &lt; 0.05 {instance_destroy()}
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite_ext(spr_hurt,image_index,view_xview[0],view_yview[0],1024,768,0,0,image_alpha)
+            <string>draw_sprite_ext(spr_hurt,image_index,view_xview[0],view_yview[0],1024,768,0,c_red,image_alpha)
 </string>
           </argument>
         </arguments>

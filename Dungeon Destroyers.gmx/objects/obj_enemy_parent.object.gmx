@@ -25,9 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>move_x = 0
-move_y = 0
-alarm[0] = 5
+            <string>move_x = random(5760);
+move_y = random(4320);
+motion_set(random(360),spd*delta)
+alarm[0] = 1
 </string>
           </argument>
         </arguments>
@@ -103,9 +104,10 @@ if distance_to_object(obj_player) &gt; 150
 {
     move_x = random(5760)
     move_y = random(4320)
-    move_towards_point(move_x,move_y,spd*delta)
+    motion_set(random(360),spd*delta)
+//    move_towards_point(move_x,move_y,spd*delta)
 }
-alarm[0] = 5*fps_real
+alarm[0] = 3*fps_real
 </string>
           </argument>
         </arguments>
@@ -128,47 +130,19 @@ alarm[0] = 5*fps_real
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if hspeed &gt; 0 {image_xscale = -1}
-else {image_xscale = 1}
+            <string>///Control Direction, Collision, and Death
+if place_meeting(x,y,obj_block) {move_bounce_solid(1);}
+
+if hspeed &gt; 0 {image_xscale = -1;}
+else {image_xscale = 1;}
 
 if hp &lt; 1
 {
     instance_destroy();
-    instance_create(x,y,obj_death)
+    instance_create(x,y,obj_death);
     sound_play(snd_die);
 }
-
-if place_meeting(x,y,obj_block)
-{move_bounce_solid(false);}
-if place_meeting(x,y,obj_rock)
-{move_bounce_solid(false);}
 </string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_rock">
-      <action>
-        <libid>1</libid>
-        <id>115</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_bounce</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
           </argument>
         </arguments>
       </action>
@@ -190,25 +164,101 @@ if place_meeting(x,y,obj_rock)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var i = irandom(14)
+            <string>var i = irandom(10), bone;
 if canhit = true
 {
     canhit = false
-    alarm[1] = 0.25*fps_real
+    alarm[1] = 0.15*fps_real
     spd = -4
     sound_play(snd_hurt)
     sound_play(snd_click)
+    direction = other.direction
+    instance_create(other.x,other.y,obj_hit)
+    if object_index != obj_spirit {other.back = true;}
+    if object_index = obj_skeleton
+    {
+        bone = instance_create(x,y,obj_skeleton_hit)
+        bone.friction = 0.2*delta
+        bone.direction = random(360)
+        bone.speed = 3*delta
+        bone = instance_create(x,y,obj_skeleton_hit)
+        bone.friction = 0.2*delta
+        bone.direction = random(360)
+        bone.speed = 3*delta
+    }
     if alarm[2] = -1 {alarm[2] = 5*delta}
     if i = 0
     {
-        hp -= 2
+        hp -= 1.5
         instance_create(x,y,obj_criticalhit)
     }
     else {hp -= 1}
     
-    if global.crit = true
+    if global.crit = true &amp;&amp; irandom(1) = 0
     {
-        hp -= 2
+        hp -= 1.5
+        instance_create(x,y,obj_criticalhit)
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_catana">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var i = irandom(15), bone;
+if canhit = true &amp;&amp; other.image_index != 0
+{
+    canhit = false
+    alarm[1] = 0.15*fps_real
+    spd = -5
+    sound_play(snd_hurt)
+    sound_play(snd_click)
+    direction = other.direction
+    instance_create(other.x,other.y,obj_hit)
+    if object_index != obj_spirit {other.back = true;}
+    if object_index = obj_skeleton
+    {
+        bone = instance_create(x,y,obj_skeleton_hit)
+        bone.friction = 0.1*delta
+        bone.direction = random(360)
+        bone.speed = 3*delta
+        bone = instance_create(x,y,obj_skeleton_hit)
+        bone.friction = 0.1*delta
+        bone.direction = random(360)
+        bone.speed = 3*delta
+        bone = instance_create(x,y,obj_skeleton_hit)
+        bone.friction = 0.1*delta
+        bone.direction = random(360)
+        bone.speed = 3*delta
+    }
+    if alarm[2] = -1 {alarm[2] = 5*delta}
+    if i = 0
+    {
+        hp -= 4
+        instance_create(x,y,obj_criticalhit)
+    }
+    else {hp -= 3}
+    
+    if global.crit = true &amp;&amp; irandom(1) = 0
+    {
+        hp -= 4
         instance_create(x,y,obj_criticalhit)
     }
 }
@@ -234,25 +284,43 @@ if canhit = true
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var i = irandom(12)
-if canhit = true
+            <string>var i = irandom(15), bone;
+if canhit = true &amp;&amp; other.poke = true
 {
     canhit = false
-    alarm[1] = 0.25*fps_real
-    spd = -4
+    alarm[1] = 0.15*fps_real
+    spd = -5
     sound_play(snd_hurt)
     sound_play(snd_click)
+    direction = other.direction
+    instance_create(other.x,other.y,obj_hit)
+    if object_index != obj_spirit {other.back = true;}
+    if object_index = obj_skeleton
+    {
+        bone = instance_create(x,y,obj_skeleton_hit)
+        bone.friction = 0.1*delta
+        bone.direction = random(360)
+        bone.speed = 3*delta
+        bone = instance_create(x,y,obj_skeleton_hit)
+        bone.friction = 0.1*delta
+        bone.direction = random(360)
+        bone.speed = 3*delta
+        bone = instance_create(x,y,obj_skeleton_hit)
+        bone.friction = 0.1*delta
+        bone.direction = random(360)
+        bone.speed = 3*delta
+    }
     if alarm[2] = -1 {alarm[2] = 5*delta}
     if i = 0
     {
-        hp -= 4
+        hp -= 3
         instance_create(x,y,obj_criticalhit)
     }
-    else {hp -= 3}
+    else {hp -= 2}
     
-    if global.crit = true
+    if global.crit = true &amp;&amp; irandom(1) = 0
     {
-        hp -= 4
+        hp -= 3
         instance_create(x,y,obj_criticalhit)
     }
 }
@@ -278,7 +346,7 @@ if canhit = true
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var i = irandom(10)
+            <string>var i = irandom(10), bone;
 if canhit = true
 {
     canhit = false
@@ -286,6 +354,24 @@ if canhit = true
     spd = -4
     sound_play(snd_hurt)
     sound_play(snd_click)
+    direction = other.direction
+    instance_create(other.x,other.y,obj_hit)
+    if object_index != obj_spirit {other.back = true;}
+    if object_index = obj_skeleton
+    {
+        bone = instance_create(x,y,obj_skeleton_hit)
+        bone.friction = 0.1*delta
+        bone.direction = random(360)
+        bone.speed = 3*delta
+        bone = instance_create(x,y,obj_skeleton_hit)
+        bone.friction = 0.1*delta
+        bone.direction = random(360)
+        bone.speed = 3*delta
+        bone = instance_create(x,y,obj_skeleton_hit)
+        bone.friction = 0.1*delta
+        bone.direction = random(360)
+        bone.speed = 3*delta
+    }
     if alarm[2] = -1 {alarm[2] = 5*delta}
     if i = 0
     {
@@ -294,7 +380,7 @@ if canhit = true
     }
     else {hp -= 1}
     
-    if global.crit = true
+    if global.crit = true &amp;&amp; irandom(1) = 0
     {
         hp -= 2
         instance_create(x,y,obj_criticalhit)
@@ -322,14 +408,32 @@ if canhit = true
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var i = irandom(12)
+            <string>var i = irandom(12), bone;
 if canhit = true
 {
     canhit = false
-    alarm[1] = 0.25*fps_real
+    alarm[1] = 0.15*fps_real
     spd = -4
     sound_play(snd_hurt)
     sound_play(snd_click)
+    direction = other.direction
+    instance_create(other.x,other.y,obj_hit)
+    if object_index != obj_spirit {other.back = true;}
+    if object_index = obj_skeleton
+    {
+        bone = instance_create(x,y,obj_skeleton_hit)
+        bone.friction = 0.1*delta
+        bone.direction = random(360)
+        bone.speed = 3*delta
+        bone = instance_create(x,y,obj_skeleton_hit)
+        bone.friction = 0.1*delta
+        bone.direction = random(360)
+        bone.speed = 3*delta
+        bone = instance_create(x,y,obj_skeleton_hit)
+        bone.friction = 0.1*delta
+        bone.direction = random(360)
+        bone.speed = 3*delta
+    }
     if alarm[2] = -1 {alarm[2] = 5*delta}
     if i = 0
     {
@@ -338,7 +442,7 @@ if canhit = true
     }
     else {hp -= 1.5}
     
-    if global.crit = true
+    if global.crit = true &amp;&amp; irandom(1) = 0
     {
         hp -= 3
         instance_create(x,y,obj_criticalhit)

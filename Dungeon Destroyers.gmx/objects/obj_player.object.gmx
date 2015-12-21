@@ -35,13 +35,13 @@ with (obj_floor)
     //SPAWNING OBJ_BACKGROUND
     if background_spawn = 0 {instance_create(x+16,y+16,obj_background)}
     //SPAWNING OBJ_ROCK
-    if irandom(30) = 0 &amp;&amp; !!place_meeting(x+16,y+16,obj_background)
-    &amp;&amp; !!place_meeting(x+16,y+16,obj_chest) &amp;&amp; !!place_meeting(x+16,y+16,obj_locked_chest)
+    if irandom(25) = 0 &amp;&amp; !place_meeting(x+16,y+16,obj_background)
+    &amp;&amp; !place_meeting(x+16,y+16,obj_chest) &amp;&amp; !place_meeting(x+16,y+16,obj_locked_chest)
     {
         instance_create(x+16,y+16,obj_rock); //create a rock at this location
     }
     //SPAWNING OBJ_CHESTKEY
-    if irandom(80) = 0
+    if irandom(95) = 0
     {
         instance_create(x+16,y+16,obj_ckey); //create a rock at this location
     }
@@ -68,13 +68,13 @@ with (obj_floor)
             if irandom(9) = 0 {instance_create(x+16,y+16,obj_goblin)} else
             if irandom(10) = 0 {instance_create(x+16,y+16,obj_slime2)}
         }
+    if instance_number(obj_slime) = 0 {instance_create(x+16,y+16,obj_slime)}
+    if instance_number(obj_spikeball) = 0 {instance_create(x+16,y+16,obj_spikeball)}
+    if instance_number(obj_slime2) = 0 {instance_create(x+16,y+16,obj_slime2)}
+    if instance_number(obj_skeleton) = 0 {instance_create(x+16,y+16,obj_skeleton)}
+    if instance_number(obj_ratman) = 0 {instance_create(x+16,y+16,obj_ratman)}
+    if instance_number(obj_goblin) = 0 {instance_create(x+16,y+16,obj_goblin)}
     }
-if instance_number(obj_slime) = 0 {instance_create(x+16,y+16,obj_slime)}
-if instance_number(obj_spikeball) = 0 {instance_create(x+16,y+16,obj_spikeball)}
-if instance_number(obj_slime2) = 0 {instance_create(x+16,y+16,obj_slime2)}
-if instance_number(obj_skeleton) = 0 {instance_create(x+16,y+16,obj_skeleton)}
-if instance_number(obj_ratman) = 0 {instance_create(x+16,y+16,obj_ratman)}
-if instance_number(obj_goblin) = 0 {instance_create(x+16,y+16,obj_goblin)}
 }
 </string>
           </argument>
@@ -161,7 +161,7 @@ alarm[5] = (0.5*fps_real)*delta
             <string>if bubble = true
 {
     alarm[3] = random_range(5,20)
-    instance_create(random_range(-5,5),y,obj_cpotion_effect)
+    instance_create(x+random_range(-5,5),y,obj_cpotion_effect)
 }
 </string>
           </argument>
@@ -186,6 +186,7 @@ alarm[5] = (0.5*fps_real)*delta
           <argument>
             <kind>1</kind>
             <string>bubble = false
+if global.crit = true {global.crit = false}
 </string>
           </argument>
         </arguments>
@@ -260,11 +261,11 @@ alarm[5] = (0.5*fps_real)*delta
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///DISABLE OBJECTS OUTSIDE VIEW BUT THE IMPORTANT ONES
+            <string>///Disable certain objects outside view
 var _x, _y, _width, _height, _inst;
 
-_x = view_xview[0] - 500;
-_y = view_yview[0] - 500;
+_x = view_xview[0] - 250;
+_y = view_yview[0] - 250;
 
 _width = view_wview[0] + 500;
 _height = view_hview[0] + 500;
@@ -307,7 +308,8 @@ scr_deactivate_monsters()
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>delta = 60/1000000*delta_time;
+            <string>///Delta Timing
+delta = 60/1000000*delta_time;
 </string>
           </argument>
         </arguments>
@@ -330,7 +332,7 @@ scr_deactivate_monsters()
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//view
+            <string>///View Handling
 view_xview[0] += ((x-(view_wview[0]/2)) - view_xview[0]) * .5;
 view_yview[0] += ((y-(view_hview[0]/2)) - view_yview[0]) * .5;
 </string>
@@ -363,17 +365,22 @@ if (keyboard_check(vk_lshift)
 room_restart()
 }
 if (keyboard_check(vk_lshift)
-&amp;&amp; keyboard_check_pressed(vk_f1)) {
-if overlay = false
+&amp;&amp; keyboard_check_pressed(vk_f1))
 {
-show_debug_overlay(true)
-overlay = true
+    if overlay = false
+    {
+        show_debug_overlay(true)
+        overlay = true
+    }
+    else
+    {
+        overlay = false
+        show_debug_overlay(false)
+    }
 }
-else
-{
-overlay = false
-show_debug_overlay(false)
-}
+if (keyboard_check(vk_lshift)
+&amp;&amp; keyboard_check_pressed(vk_f4)) {
+screen_save("Picture_" + string(current_time)+".png")
 }
 </string>
           </argument>
@@ -395,7 +402,8 @@ show_debug_overlay(false)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//SCREEN SHAKING
+            <string>///Screen Shake, Potions, Death, etc.
+//SCREEN SHAKING
 view_angle = random(shake)-shake/2
 
 if shake &gt; 0 {shake -= 1}
@@ -439,29 +447,29 @@ if hp &gt; 100 {hp = 100}
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Movement
+            <string>///Movement Code
 
 if keyboard_check(ord("A"))
 {
     image_speed = .15*delta;
     image_xscale = -1
-    if place_free(x-2*delta,0) {x += -2*delta}
+    if place_free(x-2*delta,y) {x += -2*delta}
 }
 if keyboard_check(ord("D"))
 {
     image_speed = .15*delta;
     image_xscale = 1
-    if place_free(x+2*delta,0) {x += 2*delta}
+    if place_free(x+2*delta,y) {x += 2*delta}
 }
 if keyboard_check(ord("W"))
 {
     image_speed = .15*delta;
-    if place_free(0,y-2*delta) {y += -2*delta}
+    if place_free(x,y-2*delta) {y += -2*delta}
 }
 if keyboard_check(ord("S"))
 {
     image_speed = .15*delta;
-    if place_free(0,y+2*delta) {y += 2*delta}
+    if place_free(x,y+2*delta) {y += 2*delta}
 }
 
 if keyboard_check_released(ord("W")) or keyboard_check_released(ord("S"))
@@ -474,41 +482,102 @@ or keyboard_check_released(ord("A")) or keyboard_check_released(ord("D")) {image
     <event eventtype="4" ename="obj_rock">
       <action>
         <libid>1</libid>
-        <id>103</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_set_hspeed</functionname>
+        <exetype>2</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>0</kind>
-            <string>0</string>
+            <kind>1</kind>
+            <string>if hspeed!=0
+if !place_free(x+hspeed,y)
+{
+    if hspeed&gt;0 move_contact_solid(0,hspeed)
+    if hspeed&lt;0 move_contact_solid(180,-hspeed)
+}
+
+if vspeed!=0
+if !place_free(x,y+vspeed)
+{
+    if vspeed&gt;0 move_contact_solid(270,vspeed)
+    if vspeed&lt;0 move_contact_solid(90,-vspeed)
+}
+</string>
           </argument>
         </arguments>
       </action>
+    </event>
+    <event eventtype="4" ename="obj_spikes">
       <action>
         <libid>1</libid>
-        <id>104</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_set_vspeed</functionname>
+        <exetype>2</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>0</kind>
-            <string>0</string>
+            <kind>1</kind>
+            <string>///If hit by spikes
+if canhit = true &amp;&amp; other.damage &gt; 0
+{
+    hp -= other.damage
+    instance_create(x,y,obj_hit)
+    alarm[0] = 1*fps_real
+    canhit = false
+    shake = 14
+    sound_play(snd_hurt)
+    instance_create(x,y,obj_hurt);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_block">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if hspeed!=0
+if !place_free(x+hspeed,y)
+{
+    if hspeed&gt;0 move_contact_solid(0,hspeed)
+    if hspeed&lt;0 move_contact_solid(180,-hspeed)
+}
+
+if vspeed!=0
+if !place_free(x,y+vspeed)
+{
+    if vspeed&gt;0 move_contact_solid(270,vspeed)
+    if vspeed&lt;0 move_contact_solid(90,-vspeed)
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -544,41 +613,34 @@ or keyboard_check_released(ord("A")) or keyboard_check_released(ord("D")) {image
       </action>
       <action>
         <libid>1</libid>
-        <id>103</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_set_hspeed</functionname>
+        <exetype>2</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>0</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>104</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_set_vspeed</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>0</string>
+            <kind>1</kind>
+            <string>if hspeed!=0
+if !place_free(x+hspeed,y)
+{
+    if hspeed&gt;0 move_contact_solid(0,hspeed)
+    if hspeed&lt;0 move_contact_solid(180,-hspeed)
+}
+
+if vspeed!=0
+if !place_free(x,y+vspeed)
+{
+    if vspeed&gt;0 move_contact_solid(270,vspeed)
+    if vspeed&lt;0 move_contact_solid(90,-vspeed)
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -600,7 +662,8 @@ or keyboard_check_released(ord("A")) or keyboard_check_released(ord("D")) {image
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if canhit = true
+            <string>///If the player hits an enemy
+if canhit = true
 {
     hp -= other.damage
     instance_create(x,y,obj_hit)
@@ -631,12 +694,13 @@ or keyboard_check_released(ord("A")) or keyboard_check_released(ord("D")) {image
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//IF YOU PICKED UP A CRIT POTION
-if other.grab = true &amp;&amp; bubble = false
+            <string>///If a crit. potion is picked up
+if other.grab = true
 {
-    alarm[3] = random_range(5,20)
+    if alarm[3] = -1 {alarm[3] = random_range(0.1,1)*fps_real}
     alarm[2] = 10*fps_real
     bubble = true
+    global.crit = true
 }
 </string>
           </argument>
@@ -663,10 +727,10 @@ if other.grab = true &amp;&amp; bubble = false
             <string>///Increase durability based on weapon
 if other.grab = true
 {
-    if instance_exists(obj_spear) {other.durability += 40}
-    if instance_exists(obj_bow) {other.durability += 40}
-    if instance_exists(obj_s_bow) {other.durability += 40}
-    if instance_exists(obj_catana) {other.durability += 40}
+    if instance_exists(obj_spear) {obj_spear.durability += 40;}
+    if instance_exists(obj_bow) {obj_bow.durability += 40;}
+    if instance_exists(obj_s_bow) {obj_s_bow.durability += 40;}
+    if instance_exists(obj_catana) {obj_catana.durability += 40;}
     if boomerrang = true {durability += 40}
 }
 </string>
@@ -695,7 +759,7 @@ if other.grab = true
           </argument>
           <argument>
             <kind>0</kind>
-            <string>random(100)</string>
+            <string>random_range(40,100)</string>
           </argument>
         </arguments>
       </action>
@@ -721,7 +785,7 @@ if other.grab = true
           </argument>
           <argument>
             <kind>0</kind>
-            <string>random(100)</string>
+            <string>random_range(40,100)</string>
           </argument>
         </arguments>
       </action>
@@ -743,7 +807,8 @@ if other.grab = true
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if canhit = true &amp;&amp; other.damage &gt; 0
+            <string>///If hit by an enemy
+if canhit = true &amp;&amp; other.damage &gt; 0
 {
     hp -= other.damage
     instance_create(x,y,obj_hit)
@@ -751,6 +816,7 @@ if other.grab = true
     canhit = false
     shake = 12
     sound_play(snd_hurt)
+    instance_create(x,y,obj_hurt)
 }
 </string>
           </argument>

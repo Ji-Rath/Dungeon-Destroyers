@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var i = irandom(5)
+            <string>var i = irandom(10)
 image_index = random(12)
 image_speed = 0
 if irandom(2) = 1 {image_xscale = 1}
@@ -36,6 +36,7 @@ if i = 1 {image_blend = c_green}
 if i = 2 {image_blend = c_red}
 if i = 3 {image_blend = c_purple}
 if i = 4 {image_blend = c_aqua}
+if i &gt; 4 {image_blend = c_white}
 </string>
           </argument>
         </arguments>
@@ -59,7 +60,7 @@ if i = 4 {image_blend = c_aqua}
           <argument>
             <kind>1</kind>
             <string>///draw_sprite_ext_shadow(sprite, subimg, x, y, xscale, yscale, rot, color, alpha, shadow length, shadow direction, shadow color, shadow alpha);
-draw_sprite_ext_shadow(spr_background, image_index, x, y, image_xscale,image_yscale, 0, c_white, 1, 2, 315, c_black, 0.5)
+draw_sprite_ext_shadow(spr_background, image_index, x, y, image_xscale,image_yscale, 0, image_blend, 1, 2, 315, c_black, 0.5)
 </string>
           </argument>
         </arguments>
