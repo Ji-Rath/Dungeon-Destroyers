@@ -1,0 +1,26 @@
+Ideas for Dungeon Destroyers:
+
+Fixing art/etc:
+
+- Add more visual effects (hit, die, knockback animation, trail)
+- Add variety to monsters/backgrounds (headless skeleton, long or flat slime, bigger rocks)
+- Add a better lighting system, (dynamic, with field of view)
+- Add more light sources, (Ghost, lantern, torches)
+
+
+Balancing Fixes:
+
+- Everytime the skeleton throws a bone, he loses some health
+- Make the slime *Jump*
+- Only follow the player if in the line of sight
+- Go to the last place the player was found before going idol
+- Make the sword do more damage but have a cooldown for each swing
+- Make the boomerrang fire if you hold down the mouse button but have a cooldown before
+firing again.
+- Have enemies pop up in chests
+- Prevent enemies from going through the player but the ghost
+- Mimic's
+
+Additional features:
+
+- Multiplayer! (Different characters, 

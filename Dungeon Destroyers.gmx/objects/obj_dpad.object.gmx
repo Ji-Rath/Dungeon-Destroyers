@@ -27,15 +27,15 @@
             <kind>1</kind>
             <string>/// initialize virtual keys 
 
-if os_type != os_android {instance_destroy()}
+//if os_type != os_android {instance_destroy()}
 
 // localvars
 var width = sprite_get_width(spr_dpad); 
 var height = sprite_get_height(spr_dpad); 
 
 //dpad coordinates
-dpad_x = x * display_get_gui_width()/view_wview; 
-dpad_y = y * display_get_gui_height()/view_hview; 
+dpad_x = x //* display_get_gui_width()/view_wview; 
+dpad_y = y //* display_get_gui_height()/view_hview; 
 
 margin = 128; // add a margin of error area around each key to accomodate the player's finger leaving the sprite bounding box
 
