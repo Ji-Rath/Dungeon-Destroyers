@@ -198,17 +198,21 @@ if irandom(3) = 0
             <string>///Draw Text to open chest
 if place_meeting(x,y,obj_player) &amp;&amp; collected = false &amp;&amp; global.ckey &gt;= 2
 {
+    depth = -10
     draw_set_font(fnt_small);
     draw_set_halign(fa_center);
     draw_text(x,y-20,'Press SPACE to open')
 }
+else {depth = 3}
 
 if place_meeting(x,y,obj_player) &amp;&amp; collected = false &amp;&amp; global.ckey &lt; 2
 {
+    depth = -10
     draw_set_font(fnt_small);
     draw_set_halign(fa_center);
     draw_text(x,y-20,'Not enough keys!')
 }
+else {depth = 3}
 
 </string>
           </argument>

@@ -11,34 +11,6 @@
     <event eventtype="0" enumb="0">
       <action>
         <libid>1</libid>
-        <id>105</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_move_point</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>obj_player.x</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>obj_player.y</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>5*delta</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
         <id>603</id>
         <kind>7</kind>
         <userelative>0</userelative>
@@ -54,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>damage = 15;
+move_towards_point(obj_player.x,obj_player.y,4*delta)
 </string>
           </argument>
         </arguments>
@@ -76,7 +49,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_angle += 13*delta
+            <string>image_angle += 12*delta
 image_alpha -= 0.03*delta
 if image_alpha &lt; 0.01 {instance_destroy()}
 </string>

@@ -203,8 +203,15 @@ if irandom(4) = 0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///draw_sprite_shadow(sprite, subimg, x, y, shadow length, shadow direction, shadow color, shadow alpha);
-draw_sprite_shadow(spr_chest, image_index, x, y, 2, 315, c_black, 0.5)
+            <string>///Draw Text to open chest
+if place_meeting(x,y,obj_player)&amp;&amp; collected = false
+{
+    depth = -10
+    draw_set_font(fnt_small);
+    draw_set_halign(fa_center);
+    draw_text(x,y-20,'Press SPACE to open')
+}
+else {depth = 3}
 </string>
           </argument>
         </arguments>
@@ -225,13 +232,8 @@ draw_sprite_shadow(spr_chest, image_index, x, y, 2, 315, c_black, 0.5)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw Text to open chest
-if place_meeting(x,y,obj_player)&amp;&amp; collected = false
-{
-    draw_set_font(fnt_small);
-    draw_set_halign(fa_center);
-    draw_text(x,y-20,'Press SPACE to open')
-}
+            <string>///draw_sprite_shadow(sprite, subimg, x, y, shadow length, shadow direction, shadow color, shadow alpha);
+draw_sprite_shadow(spr_chest, image_index, x, y, 2, 315, c_black, 0.5)
 </string>
           </argument>
         </arguments>

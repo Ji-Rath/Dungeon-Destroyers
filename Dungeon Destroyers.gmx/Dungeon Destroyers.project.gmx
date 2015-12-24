@@ -8,6 +8,7 @@
     <extension index="0">extensions\Draw Sprite Shadow</extension>
     <extension index="1">extensions\Pause Extension</extension>
     <extension index="2">extensions\Better Instance Deactivate</extension>
+    <extension index="3">extensions\Easy Mobile Controls</extension>
   </NewExtensions>
   <sounds name="sound">
     <sound>sound\snd_boss</sound>
@@ -25,7 +26,6 @@
   <sprites name="sprites">
     <sprite>sprites\spr_arrow</sprite>
     <sprite>sprites\spr_background</sprite>
-    <sprite>sprites\spr_blackscreen</sprite>
     <sprite>sprites\spr_block</sprite>
     <sprite>sprites\spr_boomerrang</sprite>
     <sprite>sprites\spr_bow</sprite>
@@ -74,6 +74,7 @@
     <sprite>sprites\spr_exit</sprite>
     <sprite>sprites\spr_witch</sprite>
     <sprite>sprites\spr_fireball</sprite>
+    <sprite>sprites\spr_dpad</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_repeat</background>
@@ -106,6 +107,8 @@
     </scripts>
     <script>scripts\scr_dungeon_walls.gml</script>
     <script>scripts\scr_deactivate_monsters.gml</script>
+    <script>scripts\scr_get_analog_stick_axis.gml</script>
+    <script>scripts\scr_get_tilt_speed.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_gen</font>
@@ -197,6 +200,7 @@
     <object>objects\obj_light</object>
     <object>objects\obj_lightplayer</object>
     <object>objects\obj_control</object>
+    <object>objects\obj_dpad</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_start</room>

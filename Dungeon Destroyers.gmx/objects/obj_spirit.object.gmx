@@ -54,7 +54,7 @@ event_inherited()
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if distance_to_object(obj_player) &lt; 150
+            <string>if distance_to_object(obj_player) &lt; 150 &amp;&amp; distance_to_object(obj_player) &gt; 10
 {
     move_x = obj_player.x;
     move_y = obj_player.y;
