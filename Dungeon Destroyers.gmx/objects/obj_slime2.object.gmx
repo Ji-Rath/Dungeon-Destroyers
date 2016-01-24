@@ -55,15 +55,14 @@ event_inherited()
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if distance_to_object(obj_player) &lt; 150
+            <string>event_inherited();
+if distance_to_object(obj_player) &lt; 150
 {
     move_x = obj_player.x;
     move_y = obj_player.y;
-    speed = 0
+    speed = 0;
     mp_potential_step(move_x,move_y,spd*delta,solid)
 }
-
-event_inherited()
 </string>
           </argument>
         </arguments>

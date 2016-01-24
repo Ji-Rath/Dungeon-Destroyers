@@ -57,9 +57,10 @@ collected = false; //Was the chest looted?
           <argument>
             <kind>1</kind>
             <string>///If the player wants to open the chest
-if keyboard_check_pressed(vk_space) &amp;&amp; collected = false {
+if keyboard_check_pressed(vk_space) &amp;&amp; collected = false &amp;&amp; global.ckey &gt; 1{
     collected = true;
     sound_play(snd_chestopen);
+    global.ckey -= 2
     image_index = 1;
     if irandom(4) = 0 {
         instance_create(x,y,obj_boomerrang_item)

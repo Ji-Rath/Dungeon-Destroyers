@@ -228,7 +228,6 @@
     <object>objects\obj_criticalhit</object>
     <object>objects\obj_death</object>
     <object>objects\obj_dpad</object>
-    <object>objects\obj_found_key</object>
     <object>objects\obj_hit</object>
     <object>objects\obj_hud</object>
     <object>objects\obj_hurt</object>
