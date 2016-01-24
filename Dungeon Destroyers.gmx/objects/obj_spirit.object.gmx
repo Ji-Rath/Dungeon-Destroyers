@@ -32,6 +32,7 @@ hp = 5
 canhit = true
 damage = 10
 event_inherited()
+pl_light_init(50, c_aqua, 0.6);
 </string>
           </argument>
         </arguments>
@@ -54,11 +55,13 @@ event_inherited()
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if distance_to_object(obj_player) &lt; 150 &amp;&amp; distance_to_object(obj_player) &gt; 10
+            <string>speed = spd*delta
+
+if distance_to_object(obj_player) &lt; 150 &amp;&amp; distance_to_object(obj_player) &gt; 10
 {
     move_x = obj_player.x;
     move_y = obj_player.y;
-    move_towards_point(move_x,move_y,spd*delta)
+    move_towards_point(move_x,move_y,speed)
 }
 
 if hspeed &gt; 0 {image_xscale = -1}
@@ -68,6 +71,38 @@ if hp &lt; 1
     instance_destroy();
     instance_create(x,y,obj_death)
     sound_play(snd_die);
+}
+
+//Alarm handling
+
+//Alarm 0
+if timer[0] &gt; 0 {
+    timer[0] -= 1*delta
+} else {
+    if distance_to_object(obj_player) &gt; 150
+    {
+        move_x = random(5760)
+        move_y = random(4320)
+        motion_set(random(360),speed)
+    }
+    timer[0] = 3*60
+}
+
+//Alarm 1
+if timer[1] &gt; 0 {
+    timer[1] -= 1*delta
+} else {
+    //Let the object get hit again
+    canhit = true;
+    timer[1] = -1
+}
+
+//Alarm 2
+if timer[2] &gt; 0 {
+    timer[2] -= 1*delta
+} else {
+    spd = normalspd
+    timer[2] = -1
 }
 </string>
           </argument>

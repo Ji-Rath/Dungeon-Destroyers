@@ -31,58 +31,9 @@ canhit = true
 poop = true
 spd = 0
 normalspd = spd
-alarm[3] = 5
+timer[3] = 1*60
 damage = 0
 event_inherited()
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="3">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>alarm[3] = (1.5*fps_real)
-var i;
-i = instance_create(x,y,obj_spike);
-i.speed = 3.5*delta
-i.direction = 0
-i = instance_create(x,y,obj_spike);
-i.speed = 3.5*delta
-i.direction = 45
-i = instance_create(x,y,obj_spike);
-i.speed = 3.5*delta
-i.direction = 90
-i = instance_create(x,y,obj_spike);
-i.speed = 3.5*delta
-i.direction = 135
-i = instance_create(x,y,obj_spike);
-i.speed = 3.5*delta
-i.direction = 180
-i = instance_create(x,y,obj_spike);
-i.speed = 3.5*delta
-i.direction = 225
-i = instance_create(x,y,obj_spike);
-i.speed = 3.5*delta
-i.direction = 270
-i = instance_create(x,y,obj_spike);
-i.speed = 3.5*delta
-i.direction = 315
-
 </string>
           </argument>
         </arguments>
@@ -106,6 +57,37 @@ i.direction = 315
           <argument>
             <kind>1</kind>
             <string>image_angle += 1*delta
+if timer[3] &gt; 0 {
+    timer[3] -= 1*delta
+} else {
+    timer[3] = 2*60
+    var i;
+    i = instance_create(x,y,obj_spike);
+    i.speed = 2*delta
+    i.direction = 0
+    i = instance_create(x,y,obj_spike);
+    i.speed = 2*delta
+    i.direction = 45
+    i = instance_create(x,y,obj_spike);
+    i.speed = 2*delta
+    i.direction = 90
+    i = instance_create(x,y,obj_spike);
+    i.speed = 2*delta
+    i.direction = 135
+    i = instance_create(x,y,obj_spike);
+    i.speed = 2*delta
+    i.direction = 180
+    i = instance_create(x,y,obj_spike);
+    i.speed = 2*delta
+    i.direction = 225
+    i = instance_create(x,y,obj_spike);
+    i.speed = 2*delta
+    i.direction = 270
+    i = instance_create(x,y,obj_spike);
+    i.speed = 2*delta
+    i.direction = 315
+}
+
 event_inherited()
 </string>
           </argument>

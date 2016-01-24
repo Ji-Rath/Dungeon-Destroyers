@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>/// initialize virtual keys 
 
-//if os_type != os_android {instance_destroy()}
+if os_type != os_android {instance_destroy(); exit;}
 
 // localvars
 var width = sprite_get_width(spr_dpad); 

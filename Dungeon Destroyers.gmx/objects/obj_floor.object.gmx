@@ -66,7 +66,7 @@ alarm[0] = 30
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if place_meeting(x,y,obj_floor) {instance_destroy()}
+            <string>if place_meeting(x,y,obj_floor) {instance_destroy();}
 </string>
           </argument>
         </arguments>

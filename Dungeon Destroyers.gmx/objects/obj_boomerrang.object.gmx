@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>1</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_weapon_parent</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,65 +25,17 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>move_towards_point(mouse_x,mouse_y,8*delta)
-back = false
-alarm[0] = (0.40*fps_real)
-alarm[1] = (0.025*fps_real)
-image_speed = 1
-canback = false
+            <string>///Init Variables
+timer[0] = 0;
+timer[1] = 0;
+event_inherited();
+inhand = true; //Is the boomerrang in hand?
+returning = false //Is the boomerrang returning?
+image_speed = 0;
+canback = false; //Can the boomerrang return to player?
+damage = 1;
+
 </string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="1">
-      <action>
-        <libid>1</libid>
-        <id>611</id>
-        <kind>6</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>canback</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>true</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>611</id>
-        <kind>6</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>back</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>true</string>
           </argument>
         </arguments>
       </action>
@@ -105,14 +57,58 @@ canback = false
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if place_meeting(x,y,obj_block) &amp;&amp; canback = true {back = true}
-if back = true {move_towards_point(obj_player.x,obj_player.y,7*delta)}
+            <string>if inhand = false {
+    speed = 9*delta
+} else {
+    speed = 0;
+}
+
+if returning = true {move_towards_point(obj_player.x,obj_player.y,speed)}
+else if inhand = true {
+    event_inherited();
+}
+
+//Return back to player if hit by a block or rock
+if place_meeting(x,y,obj_block) {
+    if returning = false &amp;&amp; inhand = false {
+        returning = true;
+        canback = true;
+    }
+}
+if place_meeting(x,y,obj_rock) {
+    if returning = false &amp;&amp; inhand = false {
+        returning = true;
+        canback = true;
+    }
+}
+
+if place_meeting(x,y,obj_player) &amp;&amp; inhand = false &amp;&amp; canback = true {
+    inhand = true;
+    canback = false;
+    returning = false;
+    image_speed = 0;
+}
+
+//Timer 0
+if timer[0] &gt; 0 {
+    timer[0] -= 1*delta
+} else {
+    if inhand = false {returning = true;}
+}
+
+//Timer 1
+if timer[1] &gt; 0 {
+    timer[1] -= 1*delta
+} else {
+    canback = true;
+}
+
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_rock">
+    <event eventtype="6" enumb="53">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -129,54 +125,14 @@ if back = true {move_towards_point(obj_player.x,obj_player.y,7*delta)}
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if image_index = 0 {back = true}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_player">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if back = true {instance_destroy()}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///draw_sprite_ext_shadow(sprite, subimg, x, y, xscale, yscale, rot, color, alpha, shadow length, shadow direction, shadow color, shadow alpha);
-draw_sprite_ext_shadow(spr_boomerrang, image_index, x, y, image_xscale,image_yscale, direction, c_white, 1, 2, 315, c_black, 0.5)
+            <string>if inhand = true {
+    move_towards_point(mouse_x,mouse_y,speed);
+    inhand = false;
+    timer[0] = 0.50*60;
+    timer[1] = 0.25*60;
+    image_speed = 1*delta;
+    canback = false;
+}
 </string>
           </argument>
         </arguments>

@@ -32,8 +32,9 @@ that could cause a mess that we do not want to deal with
 */
 globalvar finished;
 finished = 0;
-
-randomize();//randomize everything so we get a different dungeon each time
+randomize()
+//random_set_seed("5326")
+//show_message(random_get_seed())
 
 grid = 32;
 

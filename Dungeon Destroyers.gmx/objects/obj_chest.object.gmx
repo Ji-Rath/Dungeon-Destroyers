@@ -11,78 +11,34 @@
     <event eventtype="0" enumb="0">
       <action>
         <libid>1</libid>
-        <id>611</id>
-        <kind>6</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>image_speed</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>611</id>
-        <kind>6</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>collected</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>false</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>117</id>
-        <kind>0</kind>
+        <id>603</id>
+        <kind>7</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_snap</functionname>
+        <exetype>2</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>0</kind>
-            <string>16</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>16</string>
+            <kind>1</kind>
+            <string>///Init Variables
+
+//Align to grid
+x=floor(x/16)*16;
+y=floor(y/16)*16;
+
+image_speed = 0;
+collected = false; //Was the chest looted?
+</string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_player">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -99,91 +55,30 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if collected = false
-&amp;&amp; keyboard_check_pressed(vk_space)
-{
-var obj;
-//Change sprite to opened chest and make the chest looted
-image_index = 1
-collected = true
-//On Player open chest
-sound_play(snd_chestopen);
-//Random loot
-if irandom(5) = 0
-{
-    obj=instance_create(x,y,obj_bow_item);
-    with (obj) motion_set(random(270),4*delta);
-    obj_bow_item.friction = 0.08*delta
-}
-if irandom(5) = 0
-{
-    obj=instance_create(x,y,obj_catana_item);
-    with (obj) motion_set(random(270),4*delta);
-    obj_catana_item.friction = 0.08*delta
-}
-if irandom(5) = 0
-{
-    obj=instance_create(x,y,obj_s_bow_item);
-    with (obj) motion_set(random(270),4*delta);
-    obj_s_bow_item.friction = 0.08*delta
-}
-if irandom(5) = 0
-{
-    obj=instance_create(x,y,obj_spear_item);
-    with (obj) motion_set(random(270),4*delta);
-    obj_spear_item.friction = 0.08*delta
-}
-if irandom(5) = 0
-{
-    obj=instance_create(x,y,obj_boomerrang_item);
-    with (obj) motion_set(random(270),4*delta);
-    obj_boomerrang_item.friction = 0.08*delta
-}
-if irandom(5) = 0
-{
-    obj=instance_create(x,y,obj_healing_potion);
-    with (obj) motion_set(random(270),4*delta);
-    obj_healing_potion.friction = 0.08*delta
-}
-if irandom(5) = 0
-{
-    obj=instance_create(x,y,obj_durability_potion);
-    with (obj) motion_set(random(270),4*delta);
-    obj_durability_potion.friction = 0.08*delta
-}
-if irandom(5) = 0
-{
-    obj=instance_create(x,y,obj_crit_potion);
-    with (obj) motion_set(random(270),4*delta);
-    obj_crit_potion.friction = 0.08*delta
-}
-if irandom(4) = 0
-{
-    obj=instance_create(x,y,obj_ckey);
-    with (obj) motion_set(random(270),4*delta);
-    obj_ckey.friction = 0.08*delta
-}
-
+            <string>///If the player wants to open the chest
+if keyboard_check_pressed(vk_space) &amp;&amp; collected = false {
+    collected = true;
+    sound_play(snd_chestopen);
+    image_index = 1;
+    if irandom(4) = 0 {
+        instance_create(x,y,obj_boomerrang_item)
+    } else
+    if irandom(4) = 0 {
+        instance_create(x,y,obj_katana_item)
+    } else
+    if irandom(4) = 0 {
+        instance_create(x,y,obj_bow_item)
+    } else
+    if irandom(4) = 0 {
+        instance_create(x,y,obj_s_bow_item)
+    } else
+    if irandom(4) = 0 {
+        instance_create(x,y,obj_spear_item)
+    }
 }
 </string>
           </argument>
         </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_locked_chest">
-      <action>
-        <libid>1</libid>
-        <id>203</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_kill_object</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
       </action>
     </event>
     <event eventtype="8" enumb="0">
@@ -203,37 +98,16 @@ if irandom(4) = 0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw Text to open chest
-if place_meeting(x,y,obj_player)&amp;&amp; collected = false
-{
+            <string>///Draw shadow and text to open chest
+if place_meeting(x,y,obj_player)&amp;&amp; collected = false {
     depth = -10
     draw_set_font(fnt_small);
     draw_set_halign(fa_center);
     draw_text(x,y-20,'Press SPACE to open')
-}
-else {depth = 3}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///draw_sprite_shadow(sprite, subimg, x, y, shadow length, shadow direction, shadow color, shadow alpha);
-draw_sprite_shadow(spr_chest, image_index, x, y, 2, 315, c_black, 0.5)
+} else {depth = 3}
+
+//Draw Shadow
+draw_sprite_shadow(sprite_index, image_index, x, y, 2, 315, c_black, 0.5)
 </string>
           </argument>
         </arguments>

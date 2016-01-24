@@ -3,7 +3,7 @@
   <spriteName>spr_spikes</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>20</depth>
+  <depth>6</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -90,7 +90,7 @@ damage = 40;
           <argument>
             <kind>1</kind>
             <string>///draw_sprite_ext_shadow(sprite, subimg, x, y, xscale, yscale, rot, color, alpha, shadow length, shadow direction, shadow color, shadow alpha);
-draw_sprite_ext_shadow(spr_spikes, image_index, x, y, image_xscale,image_yscale, 0, c_white, 1, 2, 315, c_black, 0.5)
+draw_sprite_ext_shadow(sprite_index, image_index, x, y, image_xscale,image_yscale, 0, c_white, 1, 2, 315, c_black, 0.5)
 </string>
           </argument>
         </arguments>

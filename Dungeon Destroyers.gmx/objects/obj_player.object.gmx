@@ -5,10 +5,48 @@
   <visible>-1</visible>
   <depth>2</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_light</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Init Variables
+shake = 0
+instance_create(x,y,obj_boomerrang); //Item to spawn with
+overlay = false
+image_speed = 0
+canhit = true
+spotion = false
+bubble = true
+hp = 100;
+spd = 2;
+img_speed = .1;
+inst_controll_init()
+global.crit = false
+event_inherited();
+timer[0] = 0
+timer[1] = 0
+timer[2] = 0
+timer[3] = 0
+</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -35,8 +73,7 @@ with (obj_floor)
     //SPAWNING OBJ_BACKGROUND
     if background_spawn = 0 {instance_create(x+16,y+16,obj_background)}
     //SPAWNING OBJ_ROCK
-    if irandom(25) = 0 &amp;&amp; place_meeting(x+16,y+16,obj_background)
-    &amp;&amp; !!place_meeting(x+16,y+16,obj_chest) &amp;&amp; !!place_meeting(x+16,y+16,obj_locked_chest)
+    if irandom(25) = 0 &amp;&amp; !place_meeting(x+16,y+16,obj_chest) &amp;&amp; !place_meeting(x+16,y+16,obj_chest_locked)
     {
         instance_create(x+16,y+16,obj_rock); //create a rock at this location
     }
@@ -55,7 +92,7 @@ with (obj_floor)
         if chest_spawn = 0 //if the chest spawn hits the right number
         {
             if irandom(1) = 0 {instance_create(x+16,y+16,obj_chest)}
-            if irandom(1) = 1{instance_create(x+16,y+16,obj_locked_chest)}
+            if irandom(1) = 1{instance_create(x+16,y+16,obj_chest_locked)}
         }
         //SPAWNING RANDOM ENEMYS
         if enemy_spawn = 0 //if the enemy spawn hits the right number
@@ -80,124 +117,13 @@ with (obj_floor)
           </argument>
         </arguments>
       </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Init Variables
-shake = 0
-//ROOM_SPEED (MAX FPS?)
-//room_speed = 60
-overlay = false
-alarm[5] = 10
-durability = random_range(50,100)
-image_speed = 0
-boomerrang = true
-canhit = true
-spotion = false
-bubble = true
-hp = 100
-normal = 315
-inst_controll_init()
-global.crit = false
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="5">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>hp += 0.1
-alarm[5] = (0.5*fps_real)*delta
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="3">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if bubble = true
-{
-    alarm[3] = random_range(5,20)
-    instance_create(x+random_range(-5,5),y,obj_cpotion_effect)
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="2">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>bubble = false
-if global.crit = true {global.crit = false}
-</string>
-          </argument>
-        </arguments>
-      </action>
     </event>
     <event eventtype="2" enumb="1">
       <action>
         <libid>1</libid>
-        <id>611</id>
-        <kind>6</kind>
-        <userelative>-1</userelative>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
         <exetype>2</exetype>
@@ -209,37 +135,8 @@ if global.crit = true {global.crit = false}
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>spotion</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>false</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>611</id>
-        <kind>6</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>canhit</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>true</string>
+            <string>spotion = false;
+</string>
           </argument>
         </arguments>
       </action>
@@ -332,6 +229,67 @@ delta = 60/1000000*delta_time;
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Main code
+
+//Screen shake handling
+view_angle = random(shake)-shake/2
+if shake &gt; 0 {shake -= 1}
+
+//Timer 0
+if timer[0] &gt; 0 {
+    timer[0] -= 1*delta;
+} else {
+    canhit = true;
+}
+
+//Timer 2
+if timer[2] &gt; 0 {
+    timer[2] -= 1*delta;
+} else {
+    global.crit = false
+}
+
+//Timer 3
+if timer[3] &gt; 0 {
+    timer[3] -= 1*delta;
+} else {
+    if global.crit = true
+    {
+        timer[3] = random_range(0.05,0.5)*60
+        instance_create(x+random_range(-6,6),y,obj_cpotion_effect)
+    }
+}
+
+//If the player has less than 1 hp
+if hp &lt; 1
+{
+    show_message('You died! Be sure to rate the Game on GameJolt and suggestions are always welcome!')
+    game_restart()
+}
+
+//Max out the players hp
+if hp &gt; 100 {hp = 100}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///View Handling
 view_xview[0] += ((x-(view_wview[0]/2)) - view_xview[0]) * .5;
 view_yview[0] += ((y-(view_hview[0]/2)) - view_yview[0]) * .5;
@@ -355,7 +313,54 @@ view_yview[0] += ((y-(view_hview[0]/2)) - view_yview[0]) * .5;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///CHEAT CODES
+            <string>///Movement Handling
+
+if keyboard_check(global.left)
+{
+    image_speed = img_speed*delta;
+    image_xscale = -1
+    if place_free(x-spd*delta,y) {x += -spd*delta}
+}
+if keyboard_check(global.right)
+{
+    image_speed = img_speed*delta;
+    image_xscale = 1
+    if place_free(x+spd*delta,y) {x += spd*delta}
+}
+if keyboard_check(global.up)
+{
+    image_speed = img_speed*delta;
+    if place_free(x,y-spd*delta) {y += -spd*delta}
+}
+if keyboard_check(global.down)
+{
+    image_speed = img_speed*delta;
+    if place_free(x,y+spd*delta) {y += spd*delta}
+}
+
+if keyboard_check_released(global.up) or keyboard_check_released(global.down)
+or keyboard_check_released(global.left) or keyboard_check_released(global.right) {image_speed = 0}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Cheat codes
 if (keyboard_check(vk_lshift)
 &amp;&amp; keyboard_check_pressed(vk_f2)) {
 hp = 100
@@ -402,172 +407,47 @@ screen_save("Picture_" + string(current_time)+".png")
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Screen Shake, Potions, Death, etc.
-//SCREEN SHAKING
-view_angle = random(shake)-shake/2
+            <string>///Collision Handling
 
-if shake &gt; 0 {shake -= 1}
-//IF DURABILITY IS GREATER THAN 100
-if durability &gt; 100 {durability = 100}
-//IF YOU PICKED UP A DURABILITY POTION
-if spotion = true &amp;&amp; bubble = true
-{
-    instance_create(random_range(-5,5),y,obj_spotion_effect)
-    bubble = false
-    alarm[3] = random(20)
-}
-if durability &lt; 1 {boomerrang = false}
-
-//IF PLAYER IS DEAD
-if hp &lt; 1
-{
-    show_message('You died! Be sure to rate the Game on GameJolt and suggestions are always welcome!')
-    game_restart()
-}
-//IF HP IS GREATER THAN 100
-if hp &gt; 100 {hp = 100}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Movement Code
-
-if keyboard_check(ord("A"))
-{
-    image_speed = .15*delta;
-    image_xscale = -1
-    if place_free(x-2*delta,y) {x += -2*delta}
-}
-if keyboard_check(ord("D"))
-{
-    image_speed = .15*delta;
-    image_xscale = 1
-    if place_free(x+2*delta,y) {x += 2*delta}
-}
-if keyboard_check(ord("W"))
-{
-    image_speed = .15*delta;
-    if place_free(x,y-2*delta) {y += -2*delta}
-}
-if keyboard_check(ord("S"))
-{
-    image_speed = .15*delta;
-    if place_free(x,y+2*delta) {y += 2*delta}
+//Durability potion
+if place_meeting(x,y,obj_durability_potion) {
+    if other.grab = true &amp;&amp; instance_exists(obj_weapon_parent) {obj_weapon_parent.durability += 40;}
 }
 
-if keyboard_check_released(ord("W")) or keyboard_check_released(ord("S"))
-or keyboard_check_released(ord("A")) or keyboard_check_released(ord("D")) {image_speed = 0}
-
-///Arrow Keys
-if keyboard_check(vk_left)
-{
-    image_speed = .15*delta;
-    image_xscale = -1
-    if place_free(x-2*delta,y) {x += -2*delta}
-}
-if keyboard_check(vk_right)
-{
-    image_speed = .15*delta;
-    image_xscale = 1
-    if place_free(x+2*delta,y) {x += 2*delta}
-}
-if keyboard_check(vk_up)
-{
-    image_speed = .15*delta;
-    if place_free(x,y-2*delta) {y += -2*delta}
-}
-if keyboard_check(vk_down)
-{
-    image_speed = .15*delta;
-    if place_free(x,y+2*delta) {y += 2*delta}
+//Crit potion
+if place_meeting(x,y,obj_crit_potion) {
+    if other.grab = true
+    {
+        timer[3] = random_range(0.5,0.5)*60
+        timer[2] = 10*60
+        global.crit = true
+    }
 }
 
-if keyboard_check_released(vk_up) or keyboard_check_released(vk_down)
-or keyboard_check_released(vk_left) or keyboard_check_released(vk_right) {image_speed = 0}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_rock">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if hspeed!=0
-if !place_free(x+hspeed,y)
-{
-    if hspeed&gt;0 move_contact_solid(0,hspeed)
-    if hspeed&lt;0 move_contact_solid(180,-hspeed)
+//Enemy
+if place_meeting(x,y,obj_enemy_parent) {
+    if canhit = true &amp;&amp; other.damage &gt; 0 {
+        hp -= other.damage
+        instance_create(x,y,obj_hit)
+        timer[0] = 0.5*60
+        canhit = false
+        shake = 12
+        sound_play(snd_hurt)
+        instance_create(x,y,obj_hurt)
+    }
 }
 
-if vspeed!=0
-if !place_free(x,y+vspeed)
-{
-    if vspeed&gt;0 move_contact_solid(270,vspeed)
-    if vspeed&lt;0 move_contact_solid(90,-vspeed)
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_spikes">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///If hit by spikes
-if canhit = true &amp;&amp; other.damage &gt; 0
-{
-    hp -= other.damage
-    instance_create(x,y,obj_hit)
-    alarm[0] = 1*fps_real
-    canhit = false
-    shake = 14
-    sound_play(snd_hurt)
-    instance_create(x,y,obj_hurt);
+//Enemy projectile
+if place_meeting(x,y,obj_enemy_projectile_parent) {
+    if canhit = true
+    {
+        hp -= other.damage
+        instance_create(x,y,obj_hit)
+        timer[0] = 0.4*60
+        canhit = false
+        shake = 10
+        sound_play(snd_hurt)
+    }
 }
 </string>
           </argument>
@@ -591,7 +471,8 @@ if canhit = true &amp;&amp; other.damage &gt; 0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if hspeed!=0
+            <string>///Bounce off walls
+if hspeed!=0
 if !place_free(x+hspeed,y)
 {
     if hspeed&gt;0 move_contact_solid(0,hspeed)
@@ -672,184 +553,6 @@ if !place_free(x,y+vspeed)
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_enemy_projectile_parent">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///If the player hits an enemy
-if canhit = true
-{
-    hp -= other.damage
-    instance_create(x,y,obj_hit)
-    alarm[0] = 0.4*fps_real
-    canhit = false
-    shake = 10
-    sound_play(snd_hurt)
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_crit_potion">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///If a crit. potion is picked up
-if other.grab = true
-{
-    if alarm[3] = -1 {alarm[3] = random_range(0.1,1)*fps_real}
-    alarm[2] = 10*fps_real
-    bubble = true
-    global.crit = true
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_durability_potion">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Increase durability based on weapon
-if other.grab = true
-{
-    if instance_exists(obj_spear) {obj_spear.durability += 40;}
-    if instance_exists(obj_bow) {obj_bow.durability += 40;}
-    if instance_exists(obj_s_bow) {obj_s_bow.durability += 40;}
-    if instance_exists(obj_catana) {obj_catana.durability += 40;}
-    if boomerrang = true {durability += 40}
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_spear_item">
-      <action>
-        <libid>1</libid>
-        <id>611</id>
-        <kind>6</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>obj_spear</whoName>
-        <relative>-1</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>durability</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>random_range(40,100)</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_bow_item">
-      <action>
-        <libid>1</libid>
-        <id>611</id>
-        <kind>6</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>obj_bow</whoName>
-        <relative>-1</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>durability</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>random_range(40,100)</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_enemy_parent">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///If hit by an enemy
-if canhit = true &amp;&amp; other.damage &gt; 0
-{
-    hp -= other.damage
-    instance_create(x,y,obj_hit)
-    alarm[0] = 0.5*fps_real
-    canhit = false
-    shake = 12
-    sound_play(snd_hurt)
-    instance_create(x,y,obj_hurt)
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="6" enumb="53">
       <action>
         <libid>1</libid>
@@ -867,12 +570,10 @@ if canhit = true &amp;&amp; other.damage &gt; 0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if instance_number(obj_boomerrang) = 0
-&amp;&amp; boomerrang = true {instance_create(x,y,obj_boomerrang)}
-
-if boomerrang = false &amp;&amp; instance_number(obj_spear) = 0
-&amp;&amp; instance_number(obj_s_bow) = 0 &amp;&amp; instance_number(obj_bow) = 0
-&amp;&amp; instance_number(obj_catana) = 0 &amp;&amp; instance_number(obj_punch) = 0 {instance_create(x,y,obj_punch)}
+            <string>///If the player is bare-handed
+if (!(instance_exists(obj_weapon_parent) || instance_exists(obj_melee))) {
+    instance_create(x,y,obj_melee)
+}
 </string>
           </argument>
         </arguments>
@@ -925,32 +626,9 @@ if boomerrang = false &amp;&amp; instance_number(obj_spear) = 0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///draw_sprite_ext_shadow(sprite, subimg, x, y, xscale, yscale, rot, color, alpha, shadow length, shadow direction, shadow color, shadow alpha);
+            <string>///Draw shadow
 draw_sprite_ext_shadow(spr_player, image_index, x, y, image_xscale,image_yscale, direction, c_white, 1, 2, 315, c_black, 0.5)
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if place_meeting(x,y,obj_exit)
-{
-draw_text(x,y-10,'Press SPACE to continue to next dungeon!')
-}
+if place_meeting(x,y,obj_exit) {draw_text(x,y-10,'Press SPACE to continue to next dungeon!')}
 </string>
           </argument>
         </arguments>

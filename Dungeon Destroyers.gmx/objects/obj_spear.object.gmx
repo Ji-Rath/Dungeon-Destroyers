@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>1</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_weapon_parent</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,9 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>durability = random_range(40,100)
+            <string>///Init Variables
+event_inherited();
 image_speed = 0
 throwing = false
+damage = 2;
 </string>
           </argument>
         </arguments>
@@ -50,17 +52,15 @@ throwing = false
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if place_meeting(x,y,obj_block) &amp;&amp; throwing = true {throwing = false; effect_create_above(ef_ellipse,x,y,0,c_white);}
-if throwing = false
-{
-    x = obj_player.x
-    y = obj_player.y
+            <string>///Collision handling
+if place_meeting(x,y,obj_block) &amp;&amp; throwing = true {throwing = false; effect_create_above(ef_ellipse,x,y,0,c_white);}
+if place_meeting(x,y,obj_rock) &amp;&amp; throwing = true {throwing = false; effect_create_above(ef_ellipse,x,y,0,c_white);}
+
+//If the spear is not being thrown
+if throwing = false {
+    event_inherited()
     image_angle = point_direction(x,y,mouse_x,mouse_y)
 }
-if durability &gt; 100 {durability = 100}
-if durability &lt; 1 {instance_destroy()}
-if image_index = 4 or 3 {poke = true}
-else {poke = false &amp;&amp; throwing = false}
 </string>
           </argument>
         </arguments>
@@ -83,7 +83,8 @@ else {poke = false &amp;&amp; throwing = false}
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>durability -= 0.8
+            <string>///Subtract durability for every enemy hit
+durability -= 0.25
 </string>
           </argument>
         </arguments>
@@ -106,9 +107,10 @@ else {poke = false &amp;&amp; throwing = false}
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if image_index = 0 &amp;&amp; throwing = false
+            <string>///Throw the spear
+if image_index = 0 &amp;&amp; throwing = false
 {
-    move_towards_point(mouse_x,mouse_y,10*delta);
+    move_towards_point(mouse_x,mouse_y,15*delta);
     throwing = true
 }
 </string>
@@ -117,58 +119,6 @@ else {poke = false &amp;&amp; throwing = false}
       </action>
     </event>
     <event eventtype="7" enumb="40">
-      <action>
-        <libid>1</libid>
-        <id>611</id>
-        <kind>6</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>throwing</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>false</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="7">
-      <action>
-        <libid>1</libid>
-        <id>611</id>
-        <kind>6</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>image_speed</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -185,8 +135,8 @@ else {poke = false &amp;&amp; throwing = false}
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///draw_sprite_ext_shadow(sprite, subimg, x, y, xscale, yscale, rot, color, alpha, shadow length, shadow direction, shadow color, shadow alpha);
-draw_sprite_ext_shadow(sprite_index, image_index, x, y, image_xscale,image_yscale, image_angle, c_white, 1, 2, 315, c_black, 0.5)
+            <string>///Bring the spear back to the player if it got too far
+throwing = false;
 </string>
           </argument>
         </arguments>

@@ -72,7 +72,7 @@ cursor_sprite = spr_cursor
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>sound_stop_all()
+            <string>sound_stop_all();
 </string>
           </argument>
         </arguments>

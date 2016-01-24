@@ -32,31 +32,8 @@ image_speed = .1*delta
 hp = 8
 shoot = true
 damage = 10
+timer[0] = 0
 event_inherited();
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="3">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Able to shoot again
-shoot = true;
 </string>
           </argument>
         </arguments>
@@ -79,26 +56,27 @@ shoot = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (distance_to_object(obj_player) &lt; 150
-&amp;&amp; distance_to_object(obj_player) &gt; 80)
-{
+            <string>event_inherited()
+if (distance_to_object(obj_player) &lt; 150 &amp;&amp; distance_to_object(obj_player) &gt; 80) {
     move_x = obj_player.x
     move_y = obj_player.y
-    if speed &gt; 0 {mp_potential_step(obj_player.x,obj_player.y,0,solid)}
-    else {mp_potential_step(obj_player.x,obj_player.y,spd*delta,solid)}
+    speed = 0
+    mp_potential_step(obj_player.x,obj_player.y,spd*delta,solid)
     image_speed = .1*delta
-}
-else if distance_to_object(obj_player) &lt; 150 &amp;&amp; shoot = true
-{
+} else if distance_to_object(obj_player) &lt; 150 &amp;&amp; shoot = true {
     speed = 0; 
-    image_speed = 0
+    image_speed = 0;
     var i
     instance_create(x,y,obj_bone)
     shoot = false
-    alarm[3] = (1*fps_real)
+    timer[0] = 2*60
 }
 
-event_inherited()
+if timer[0] &gt; 0 {
+    timer[0] -= 1
+} else {
+    shoot = true
+}
 </string>
           </argument>
         </arguments>

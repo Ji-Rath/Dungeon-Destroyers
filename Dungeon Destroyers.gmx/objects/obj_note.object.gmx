@@ -53,19 +53,17 @@ room_goto(rm_menu)
 draw_set_halign(fa_center)
 draw_set_color(c_white);
 draw_set_font(fnt_medium);
-draw_text(room_width/2,room_height/2-50,"Welcome to DUNGEON DESTROYERS!
+draw_text(room_width/2,room_height/2-50,"Welcome to Dungeon Destroyers!
 ##We need your suggestions! Every comment counts and#if you would like to contribute to the game, be sure to rate and follow on gamejolt!
-#Have fun!
 ##Game Made by crazeh_boy709
-#Alpha 2.0
-#####Press ENTER to begin!");
+###Press ANY KEY to begin!");
 
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="9" enumb="13">
+    <event eventtype="9" enumb="1">
       <action>
         <libid>1</libid>
         <id>603</id>

@@ -59,7 +59,8 @@ event_inherited()
 {
     move_x = obj_player.x;
     move_y = obj_player.y;
-    mp_potential_step(move_x,move_y,0,solid)
+    speed = 0
+    mp_potential_step(move_x,move_y,spd*delta,solid)
 }
 
 event_inherited()

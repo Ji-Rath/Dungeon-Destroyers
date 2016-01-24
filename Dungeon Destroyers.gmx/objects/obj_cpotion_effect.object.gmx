@@ -26,7 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>image_speed = 0.5*delta
-vspeed -= 0.8*delta
+vspeed -= 0.9*delta
+pl_light_init(30, c_green, 0.5);
 </string>
           </argument>
         </arguments>

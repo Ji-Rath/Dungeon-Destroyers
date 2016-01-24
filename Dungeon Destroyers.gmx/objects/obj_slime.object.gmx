@@ -25,12 +25,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>spd = 1.25
-normalspd = spd
-hp = 6
-image_speed = 0.05*delta
-canhit = true
-damage = 20
+            <string>spd = 1.25;
+normalspd = spd;
+hp = 6;
+image_speed = 0.05*delta;
+canhit = true;
+damage = 20;
 event_inherited()
 </string>
           </argument>
@@ -54,14 +54,14 @@ event_inherited()
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if distance_to_object(obj_player) &lt; 150
+            <string>event_inherited()
+if distance_to_object(obj_player) &lt; 150
 {
     move_x = obj_player.x;
     move_y = obj_player.y;
-    if speed = 0 {mp_potential_step(move_x,move_y,spd*delta,solid)}
-    else {mp_potential_step(move_x,move_y,0,solid)}
+    speed = 0
+    mp_potential_step(move_x,move_y,spd*delta,solid)
 }
-event_inherited()
 
 </string>
           </argument>
