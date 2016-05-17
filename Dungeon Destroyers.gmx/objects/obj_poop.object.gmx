@@ -27,11 +27,10 @@
             <kind>1</kind>
             <string>///Init variables
 var i = irandom(2);
-image_speed = 0.2*delta
 damage = 10;
-alarm[0] = 300
 image_alpha = 1
 die = false
+timer[0] = 4*60;
 if i = 0 {image_xscale = 1}
 else {image_xscale = -1}
 
@@ -57,7 +56,7 @@ else {image_xscale = -1}
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Allow the poop to become air
+            <string>///Allow the poop to loose its image alpha
 die = true;
 </string>
           </argument>
@@ -81,10 +80,27 @@ die = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Make the poop become air when the time is right
+            <string>///Main step event
+
+//If the poop has lived its duration, destroy it
 if die = true {image_alpha -= 0.02*delta}
 if image_alpha &lt; 0.01 {instance_destroy();}
+
+//If there is more than 5 poop, destroy itself
 if instance_number(obj_poop) &gt; 5 {instance_destroy();}
+
+//Set the image speed
+image_speed = 0.2*delta
+
+
+//Timer Handling
+
+//Poop Duration
+if timer[0] &gt; 0 {
+    timer[0] -= 1*delta
+} else {
+    die = true;
+}
 
 </string>
           </argument>
@@ -108,7 +124,7 @@ if instance_number(obj_poop) &gt; 5 {instance_destroy();}
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///If the player steps in the doo doo
+            <string>///If the player collides with the poop
 instance_destroy();
 </string>
           </argument>

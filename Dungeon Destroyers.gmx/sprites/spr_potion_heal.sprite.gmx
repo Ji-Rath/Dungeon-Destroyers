@@ -20,6 +20,6 @@
   <width>9</width>
   <height>11</height>
   <frames>
-    <frame index="0">images\spr_hpotion_0.png</frame>
+    <frame index="0">images\spr_potion_heal_0.png</frame>
   </frames>
 </sprite>

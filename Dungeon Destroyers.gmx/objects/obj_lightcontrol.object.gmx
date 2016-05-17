@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>pl_init();
-pl_add(obj_light, obj_spirit, obj_cpotion_effect, obj_death);
+pl_add(obj_light, obj_spirit, obj_epotion_crit, obj_death, obj_epotion_regen);
 pl_set_vivid(true);
 </string>
           </argument>

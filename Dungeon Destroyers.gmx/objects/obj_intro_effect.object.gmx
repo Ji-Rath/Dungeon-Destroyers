@@ -60,7 +60,7 @@ if image_alpha &gt; 0.8
     with(obj_spikeball) {if distance_to_object(obj_player) &lt; i {instance_destroy();}}
     with(obj_skeleton) {if distance_to_object(obj_player) &lt; i {instance_destroy();}}
     with(obj_spirit) {if distance_to_object(obj_player) &lt; i {instance_destroy();}}
-    with(obj_rock) {if distance_to_object(obj_player) &lt; (i/2) {instance_destroy();}}
+    with(obj_rock) {if distance_to_object(obj_player) &lt; i/2 {instance_destroy();}}
 }
 </string>
           </argument>

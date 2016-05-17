@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>image_alpha = 1
 damage = 10;
+spd = 0;
 </string>
           </argument>
         </arguments>
@@ -50,6 +51,7 @@ damage = 10;
           <argument>
             <kind>1</kind>
             <string>image_alpha -= .02*delta
+speed = spd*delta
 
 if image_alpha &lt; 0.1 {
     instance_destroy();

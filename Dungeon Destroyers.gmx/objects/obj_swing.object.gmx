@@ -28,8 +28,7 @@
             <string>///Init Variables
 event_inherited();
 image_angle = point_direction(x,y,mouse_x,mouse_y);
-image_speed = 0.5*delta;
-move_towards_point(mouse_x,mouse_y,2*delta);
+move_towards_point(mouse_x,mouse_y,2.5*delta);
 damage = 2;
 </string>
           </argument>
@@ -53,7 +52,11 @@ damage = 2;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Do nothing
+            <string>image_speed = 0.5*delta;
+speed = 2.5*delta
+if place_meeting(x,y,obj_enemy_parent) {
+    instance_destroy();
+}
 </string>
           </argument>
         </arguments>

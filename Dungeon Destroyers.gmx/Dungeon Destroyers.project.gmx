@@ -42,6 +42,9 @@
     <sound>sound\snd_select</sound>
     <sound>sound\snd_shoot</sound>
     <sound>sound\snd_chestopen</sound>
+    <sound>sound\snd_spike</sound>
+    <sound>sound\snd_hit_rock</sound>
+    <sound>sound\snd_shoot_bow</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="Weapons/Items">
@@ -50,9 +53,10 @@
       <sprite>sprites\spr_bow_item</sprite>
       <sprite>sprites\spr_katana</sprite>
       <sprite>sprites\spr_spear</sprite>
-      <sprite>sprites\spr_cpotion</sprite>
-      <sprite>sprites\spr_dpotion</sprite>
-      <sprite>sprites\spr_hpotion</sprite>
+      <sprite>sprites\spr_potion_crit</sprite>
+      <sprite>sprites\spr_potion_durability</sprite>
+      <sprite>sprites\spr_potion_heal</sprite>
+      <sprite>sprites\spr_potion_regen</sprite>
       <sprite>sprites\spr_dungeonkey</sprite>
       <sprite>sprites\spr_chest_key</sprite>
       <sprite>sprites\spr_arrow</sprite>
@@ -83,6 +87,7 @@
     <sprite>sprites\spr_keyhole</sprite>
     <sprite>sprites\spr_chest_locked</sprite>
     <sprite>sprites\spr_LOGO</sprite>
+    <sprite>sprites\sprite50</sprite>
     <sprite>sprites\spr_icon</sprite>
     <sprite>sprites\spr_LOGO2</sprite>
     <sprite>sprites\spr_pause</sprite>
@@ -106,48 +111,53 @@
   <scripts name="scripts">
     <scripts name="My scripts">
       <script>scripts\scr_keycheck.gml</script>
+      <script>scripts\scr_enemy_idol.gml</script>
+      <script>scripts\scr_enemy_follow.gml</script>
+      <script>scripts\scr_enemy_skele_follow.gml</script>
     </scripts>
-    <script>scripts\draw_shadow.gml</script>
-    <script>scripts\draw_shadow_ext.gml</script>
-    <script>scripts\draw_sprite_ext_shadow.gml</script>
-    <script>scripts\draw_sprite_shadow.gml</script>
-    <script>scripts\file_check.gml</script>
-    <script>scripts\game_is_paused.gml</script>
-    <script>scripts\game_pause.gml</script>
-    <script>scripts\game_resume.gml</script>
-    <script>scripts\inst_activate_object.gml</script>
-    <script>scripts\inst_activate_object_all.gml</script>
-    <script>scripts\inst_activate_object_region.gml</script>
-    <script>scripts\inst_activate_region.gml</script>
-    <script>scripts\inst_controll_init.gml</script>
-    <script>scripts\inst_deactivate_object.gml</script>
-    <script>scripts\inst_deactivate_object_all.gml</script>
-    <script>scripts\inst_deactivate_object_region.gml</script>
-    <script>scripts\inst_deactivate_object_region_new.gml</script>
-    <script>scripts\pl_add.gml</script>
-    <script>scripts\pl_draw.gml</script>
-    <script>scripts\pl_end.gml</script>
-    <script>scripts\pl_init.gml</script>
-    <script>scripts\pl_light_destroy.gml</script>
-    <script>scripts\pl_light_draw.gml</script>
-    <script>scripts\pl_light_get_alpha.gml</script>
-    <script>scripts\pl_light_get_color.gml</script>
-    <script>scripts\pl_light_get_radius.gml</script>
-    <script>scripts\pl_light_init.gml</script>
-    <script>scripts\pl_light_set_alpha.gml</script>
-    <script>scripts\pl_light_set_color.gml</script>
-    <script>scripts\pl_light_set_radius.gml</script>
-    <script>scripts\pl_light_update.gml</script>
-    <script>scripts\pl_option_set_ambience.gml</script>
-    <script>scripts\pl_option_set_blur.gml</script>
-    <script>scripts\pl_set_blurring.gml</script>
-    <script>scripts\pl_set_vivid.gml</script>
-    <script>scripts\pl_update.gml</script>
-    <script>scripts\README.gml</script>
-    <script>scripts\scr_deactivate_monsters.gml</script>
-    <script>scripts\scr_dungeon_walls.gml</script>
-    <script>scripts\scr_get_analog_stick_axis.gml</script>
-    <script>scripts\scr_get_tilt_speed.gml</script>
+    <scripts name="Other Scripts">
+      <script>scripts\scr_dungeon_walls.gml</script>
+      <script>scripts\pl_light_set_alpha.gml</script>
+      <script>scripts\pl_add.gml</script>
+      <script>scripts\draw_shadow.gml</script>
+      <script>scripts\draw_shadow_ext.gml</script>
+      <script>scripts\pl_light_destroy.gml</script>
+      <script>scripts\draw_sprite_ext_shadow.gml</script>
+      <script>scripts\draw_sprite_shadow.gml</script>
+      <script>scripts\game_pause.gml</script>
+      <script>scripts\inst_activate_object_all.gml</script>
+      <script>scripts\file_check.gml</script>
+      <script>scripts\game_resume.gml</script>
+      <script>scripts\game_is_paused.gml</script>
+      <script>scripts\pl_option_set_ambience.gml</script>
+      <script>scripts\inst_activate_object.gml</script>
+      <script>scripts\inst_activate_object_region.gml</script>
+      <script>scripts\inst_activate_region.gml</script>
+      <script>scripts\inst_deactivate_object_all.gml</script>
+      <script>scripts\inst_controll_init.gml</script>
+      <script>scripts\pl_light_draw.gml</script>
+      <script>scripts\inst_deactivate_object.gml</script>
+      <script>scripts\pl_light_get_color.gml</script>
+      <script>scripts\inst_deactivate_object_region_new.gml</script>
+      <script>scripts\pl_end.gml</script>
+      <script>scripts\pl_draw.gml</script>
+      <script>scripts\inst_deactivate_object_region.gml</script>
+      <script>scripts\pl_init.gml</script>
+      <script>scripts\pl_light_set_radius.gml</script>
+      <script>scripts\pl_light_update.gml</script>
+      <script>scripts\pl_light_init.gml</script>
+      <script>scripts\pl_light_set_color.gml</script>
+      <script>scripts\pl_light_get_radius.gml</script>
+      <script>scripts\pl_light_get_alpha.gml</script>
+      <script>scripts\pl_set_blurring.gml</script>
+      <script>scripts\pl_option_set_blur.gml</script>
+      <script>scripts\pl_set_vivid.gml</script>
+      <script>scripts\scr_get_analog_stick_axis.gml</script>
+      <script>scripts\scr_get_tilt_speed.gml</script>
+      <script>scripts\scr_deactivate_monsters.gml</script>
+      <script>scripts\README.gml</script>
+      <script>scripts\pl_update.gml</script>
+    </scripts>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\pl_shd_gaussian_horizontal.shader</shader>
@@ -165,9 +175,8 @@
       <object>objects\obj_weapon_parent</object>
       <object>objects\obj_boomerrang</object>
       <object>objects\obj_bow</object>
+      <object>objects\obj_sbow</object>
       <object>objects\obj_katana</object>
-      <object>objects\obj_s_bow</object>
-      <object>objects\obj_spear</object>
       <object>objects\obj_melee</object>
       <object>objects\obj_swing</object>
     </objects>
@@ -176,11 +185,11 @@
       <object>objects\obj_katana_item</object>
       <object>objects\obj_boomerrang_item</object>
       <object>objects\obj_bow_item</object>
-      <object>objects\obj_s_bow_item</object>
-      <object>objects\obj_healing_potion</object>
-      <object>objects\obj_durability_potion</object>
-      <object>objects\obj_crit_potion</object>
-      <object>objects\obj_spear_item</object>
+      <object>objects\obj_sbow_item</object>
+      <object>objects\obj_potion_healing</object>
+      <object>objects\obj_potion_regen</object>
+      <object>objects\obj_potion_durability</object>
+      <object>objects\obj_potion_crit</object>
       <object>objects\obj_ckey</object>
       <object>objects\obj_dkey</object>
     </objects>
@@ -190,8 +199,8 @@
       <object>objects\obj_ratman</object>
       <object>objects\obj_skeleton</object>
       <object>objects\obj_slime</object>
-      <object>objects\obj_spikeball</object>
       <object>objects\obj_slime2</object>
+      <object>objects\obj_spikeball</object>
       <object>objects\obj_spirit</object>
     </objects>
     <objects name="Chests/Blocks">
@@ -204,11 +213,11 @@
       <object>objects\obj_spikes</object>
     </objects>
     <objects name="Buttons">
-      <object>objects\obj_begin</object>
-      <object>objects\obj_back</object>
+      <object>objects\obj_button_start</object>
+      <object>objects\obj_button_quit</object>
+      <object>objects\obj_button_back</object>
+      <object>objects\obj_button_settings</object>
       <object>objects\obj_keypress</object>
-      <object>objects\obj_quit</object>
-      <object>objects\obj_controls</object>
     </objects>
     <objects name="Dungeon Generation">
       <object>objects\obj_dungeon_control</object>
@@ -223,8 +232,9 @@
     </objects>
     <object>objects\obj_player</object>
     <object>objects\obj_background</object>
+    <object>objects\obj_epotion_crit</object>
+    <object>objects\obj_epotion_regen</object>
     <object>objects\obj_control</object>
-    <object>objects\obj_cpotion_effect</object>
     <object>objects\obj_criticalhit</object>
     <object>objects\obj_death</object>
     <object>objects\obj_dpad</object>
@@ -238,15 +248,14 @@
     <object>objects\obj_note</object>
     <object>objects\obj_pause</object>
     <object>objects\obj_poop</object>
-    <object>objects\obj_settings</object>
-    <object>objects\obj_spotion_effect</object>
+    <object>objects\obj_controlsettings</object>
     <object>objects\obj_version</object>
     <object>objects\parent_dont_pause</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_start</room>
-    <room>rooms\rm_level1</room>
     <room>rooms\rm_menu</room>
+    <room>rooms\rm_level1</room>
     <room>rooms\rm_controls</room>
   </rooms>
   <help>

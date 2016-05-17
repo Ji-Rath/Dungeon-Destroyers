@@ -30,6 +30,9 @@ move_y = random(4320);
 timer[0] = 1;
 timer[1] = 0;
 timer[2] = 0;
+timer[3] = 0;
+state = states.idol;
+dir = random(360);
 </string>
           </argument>
         </arguments>
@@ -52,54 +55,64 @@ timer[2] = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Control Direction, Collision, and Death
+            <string>///Step Event
 
-speed = spd*delta
+//Collision
+if object_index != obj_spirit {
+    if place_meeting(x,y,obj_block) {
+        move_bounce_solid(1);
+    }
+    if place_meeting(x,y,obj_rock) {
+        move_bounce_solid(1);
+    }
+}
 
-if place_meeting(x,y,obj_block) {move_bounce_solid(1);}
-if place_meeting(x,y,obj_rock) {move_bounce_solid(1);}
+//States
+switch (state) {
+case states.idol: scr_enemy_idol(); break;
+case states.follow: scr_enemy_follow(); break;
+case states.skeleton: scr_enemy_skele_follow(); break;
+}
+ 
+//Speed handling
+image_speed = 0.05*delta
 
-if hspeed &gt; 0 {image_xscale = -1;}
-else {image_xscale = 1;}
-
-if hp &lt; 1
-{
+//Death
+if hp &lt; 1 {
     instance_destroy();
     instance_create(x,y,obj_death);
-    sound_play(snd_die);
+    audio_emitter_pitch(audio_em, random_range(.8,1.2));
+    audio_play_sound_on(audio_em,snd_die,false,10);
+    if irandom(2) = 0 {instance_create(x,y,obj_ckey)}
+    else if object_index = obj_slime2 {instance_create(x,y,obj_ckey)}
 }
 
 //Alarm handling
 
-//Alarm 0
-if timer[0] &gt; 0 {
-    timer[0] -= 1*delta
-} else {
-    if distance_to_object(obj_player) &gt; 150
-    {
-        move_x = random(5760)
-        move_y = random(4320)
-        motion_set(random(360),speed)
-    }
-    timer[0] = 3*60
-}
-
-//Alarm 1
+//Enemy can get hit again
 if timer[1] &gt; 0 {
     timer[1] -= 1*delta
 } else {
-    //Let the object get hit again
     canhit = true;
     timer[1] = -1
 }
 
-//Alarm 2
+//Stop the knockback
 if timer[2] &gt; 0 {
     timer[2] -= 1*delta
 } else {
     spd = normalspd
     timer[2] = -1
 }
+
+//Let the enemy shoot again
+if timer[3] &gt; 0 {
+    timer[3] -= 1
+} else {
+    shoot = true
+}
+
+
 </string>
           </argument>
         </arguments>
@@ -126,10 +139,10 @@ if timer[2] &gt; 0 {
 if canhit = true
 {
     canhit = false
-    timer[1] = 0.5*60
-    spd = -4
-    sound_play(snd_hurt)
-    sound_play(snd_click)
+    timer[1] = 0.125*60
+    spd -= 2
+    audio_emitter_pitch(audio_em, random_range(.7,1.3));
+    audio_play_sound_on(audio_em,snd_hurt,false,10);
     direction = other.direction
     instance_create(other.x,other.y,obj_hit)
     if object_index != obj_spirit {other.back = true;}
@@ -148,7 +161,7 @@ if canhit = true
         bone.direction = random(360)
         bone.speed = 3*delta
     }
-    if timer[2] = -1 {timer[2] = 5*delta}
+    if timer[2] = -1 {timer[2] = 0.2*60}
     if i = 0
     {
         hp -= other.damage * 2
@@ -156,7 +169,7 @@ if canhit = true
     }
     else {hp -= other.damage}
     
-    if global.crit = true &amp;&amp; irandom(1) = 0
+    if obj_player.crit = true &amp;&amp; irandom(1) = 0
     {
         hp -= other.damage * 2
         instance_create(x,y,obj_criticalhit)
@@ -185,15 +198,17 @@ if canhit = true
           <argument>
             <kind>1</kind>
             <string>var i = irandom(12), bone;
-if canhit = true
+if canhit = true &amp;&amp; other.damage &gt; 0
 {
+    if other.object_index = obj_boomerrang {if other.inhand = true {exit;}}
+    if other.object_index = obj_katana {if other.swinging = false {exit;}}
     canhit = false
-    timer[1] = 0.5*60
-    spd = -4
-    sound_play(snd_hurt)
-    sound_play(snd_click)
+    timer[1] = 0.125*60
+    spd -= 2
+    audio_emitter_pitch(audio_em, random_range(.7,1.3));
+    audio_play_sound_on(audio_em,snd_hurt,false,10);
     direction = other.direction
-    instance_create(other.x,other.y,obj_hit)
+    instance_create(other.x+random_range(-10,10),other.y+random_range(-10,10),obj_hit)
     if object_index != obj_spirit {other.back = true;}
     if object_index = obj_skeleton
     {
@@ -210,7 +225,7 @@ if canhit = true
         bone.direction = random(360)
         bone.speed = 3*delta
     }
-    if timer[2] = -1 {timer[2] = 5*delta}
+    if timer[2] = -1 {timer[2] = 0.1*60}
     if i = 0
     {
         hp -= other.damage * 2
@@ -218,7 +233,7 @@ if canhit = true
     }
     else {hp -= other.damage}
     
-    if global.crit = true &amp;&amp; irandom(1) = 0
+    if obj_player.crit = true &amp;&amp; irandom(1) = 0
     {
         hp -= other.damage * 2
         instance_create(x,y,obj_criticalhit)
@@ -246,8 +261,8 @@ if canhit = true
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///draw_sprite_ext_shadow(sprite, subimg, x, y, xscale, yscale, rot, color, alpha, shadow length, shadow direction, shadow color, shadow alpha);
-draw_sprite_ext_shadow(sprite_index, image_index, x, y, image_xscale,image_yscale, 0, c_white, 1, 2, 315, c_black, 0.5)
+            <string>///Draw Shadow and image
+draw_sprite_ext_shadow(sprite_index, image_index, x, y, image_xscale, image_yscale, image_angle, c_white, 1, 2, 315, c_black, 0.5)
 </string>
           </argument>
         </arguments>

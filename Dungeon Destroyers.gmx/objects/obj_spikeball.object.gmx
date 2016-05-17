@@ -25,10 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_speed = 0.05*delta
-hp = 8
+            <string>hp = 8
 canhit = true
-poop = true
 spd = 0
 normalspd = spd
 timer[3] = 1*60
@@ -56,35 +54,35 @@ event_inherited()
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_angle += 1*delta
+            <string>image_angle += 1
 if timer[3] &gt; 0 {
     timer[3] -= 1*delta
 } else {
     timer[3] = 2*60
     var i;
     i = instance_create(x,y,obj_spike);
-    i.speed = 2*delta
+    i.spd = 2
     i.direction = 0
     i = instance_create(x,y,obj_spike);
-    i.speed = 2*delta
+    i.spd = 2
     i.direction = 45
     i = instance_create(x,y,obj_spike);
-    i.speed = 2*delta
+    i.spd = 2
     i.direction = 90
     i = instance_create(x,y,obj_spike);
-    i.speed = 2*delta
+    i.spd = 2
     i.direction = 135
     i = instance_create(x,y,obj_spike);
-    i.speed = 2*delta
+    i.spd = 2
     i.direction = 180
     i = instance_create(x,y,obj_spike);
-    i.speed = 2*delta
+    i.spd = 2
     i.direction = 225
     i = instance_create(x,y,obj_spike);
-    i.speed = 2*delta
+    i.spd = 2
     i.direction = 270
     i = instance_create(x,y,obj_spike);
-    i.speed = 2*delta
+    i.spd = 2
     i.direction = 315
 }
 

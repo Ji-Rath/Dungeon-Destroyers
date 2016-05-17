@@ -29,14 +29,14 @@
 event_inherited();
 canshoot = true;
 damage = 0;
-
 var i;
 i = 9;
 repeat(10)
-   {
+{
    timer[i] = 0;
    i -= 1;
-   }
+}
+distance = 8;
 </string>
           </argument>
         </arguments>
@@ -73,6 +73,8 @@ if mouse_check_button(mb_left) &amp;&amp; canshoot = true {
     i.direction = point_direction(x,y,mouse_x,mouse_y)
     i.speed = 11
     canshoot = false
+    audio_emitter_pitch(audio_em, random_range(.8,1.2));
+    audio_play_sound_on(audio_em,snd_shoot_bow,false,10);
 }
 </string>
           </argument>

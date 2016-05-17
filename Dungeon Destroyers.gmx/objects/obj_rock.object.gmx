@@ -27,15 +27,14 @@
             <kind>1</kind>
             <string>///Init Variables
 image_alpha = 1;
-if irandom(2) = 1 {image_xscale = -1}
+if irandom(1) = 0 {image_xscale = -1}
 else {image_xscale = 1}
 hp = 3
 image_speed = 0;
 canhit = true;
 timer[0] = 0;
-if place_meeting(x,y,obj_chest) || place_meeting(x,y,obj_enemy_parent) {
-    instance_destroy();
-}
+alarm[0] = 30
+
 </string>
           </argument>
         </arguments>
@@ -61,6 +60,31 @@ if place_meeting(x,y,obj_chest) || place_meeting(x,y,obj_enemy_parent) {
           <argument>
             <kind>0</kind>
             <string>16</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if place_meeting(x,y,obj_chest) || place_meeting(x,y,obj_enemy_parent) || place_meeting(x,y,obj_chest_locked){
+    instance_destroy();
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -97,12 +121,15 @@ if hp &lt; 1 {
     solid = false
     image_alpha -= 0.05*delta
 }
-
-if place_meeting(x,y,obj_weapon_parent) &amp;&amp; canhit = true &amp;&amp; image_index = 0
+var i = instance_nearest(x,y,obj_weapon_parent);
+if place_meeting(x,y,i) &amp;&amp; canhit = true &amp;&amp; image_index = 0 &amp;&amp; i.damage &gt; 0
 {
+    if instance_exists(obj_boomerrang) {if i.object_index = obj_boomerrang {if i.inhand = true {exit;}}}
+    if instance_exists(obj_katana) {if i.object_index = obj_katana {if i.swinging = false {exit;}}}
     canhit = false
-    timer[0] = 0.25*60
-    sound_play(snd_hurt)
+    timer[0] = 0.15*60
+    audio_emitter_pitch(audio_em, random_range(.7,1.3));
+    audio_play_sound_on(audio_em,snd_hit_rock,false,10);
     hp -= 1
     instance_create(x,y,obj_hit)
 }
@@ -133,8 +160,9 @@ if place_meeting(x,y,obj_weapon_parent) &amp;&amp; canhit = true &amp;&amp; imag
 if canhit = true &amp;&amp; image_index = 0
 {
     canhit = false
-    alarm[0] = 0.25*fps_real
-    sound_play(snd_hurt)
+    alarm[0] = 0.15*fps_real
+    audio_emitter_pitch(audio_em, random_range(.7,1.3));
+    audio_play_sound_on(audio_em,snd_hit_rock,false,10);
     hp -= 1
     instance_create(x,y,obj_hit)
 }

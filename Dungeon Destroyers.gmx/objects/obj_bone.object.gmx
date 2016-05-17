@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>1</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_enemy_projectile_parent</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -50,8 +50,9 @@ move_towards_point(obj_player.x,obj_player.y,3*delta)
           <argument>
             <kind>1</kind>
             <string>image_angle += 12*delta
-image_alpha -= 0.03*delta
+image_alpha -= 0.015*delta
 if image_alpha &lt; 0.1 {instance_destroy()}
+speed = 3*delta;
 </string>
           </argument>
         </arguments>
@@ -91,7 +92,7 @@ if image_alpha &lt; 0.1 {instance_destroy()}
           <argument>
             <kind>1</kind>
             <string>///Draw shadow
-draw_sprite_ext_shadow(spr_skele_hit, image_index, x, y, image_xscale,image_yscale, image_angle, c_white, image_alpha, 2, 315, c_black, 0.5)
+draw_sprite_ext_shadow(spr_skele_hit, image_index, x, y, image_xscale,image_yscale, image_angle, c_white, image_alpha, 2, 315, c_black, image_alpha-0.5)
 </string>
           </argument>
         </arguments>

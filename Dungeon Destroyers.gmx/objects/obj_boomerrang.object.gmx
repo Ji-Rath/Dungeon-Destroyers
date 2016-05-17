@@ -3,7 +3,7 @@
   <spriteName>spr_boomerrang</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>1</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>obj_weapon_parent</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -34,6 +34,7 @@ returning = false //Is the boomerrang returning?
 image_speed = 0;
 canback = false; //Can the boomerrang return to player?
 damage = 1;
+distance = 14
 
 </string>
           </argument>
@@ -57,7 +58,11 @@ damage = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if inhand = false {
+            <string>//Point to mouse
+image_angle = point_direction(x,y,mouse_x,mouse_y);
+
+
+if inhand = false {
     speed = 9*delta
 } else {
     speed = 0;
@@ -76,6 +81,13 @@ if place_meeting(x,y,obj_block) {
     }
 }
 if place_meeting(x,y,obj_rock) {
+    if returning = false &amp;&amp; inhand = false {
+        returning = true;
+        canback = true;
+    }
+}
+var i = obj_enemy_parent;
+if place_meeting(x,y,i) {
     if returning = false &amp;&amp; inhand = false {
         returning = true;
         canback = true;
@@ -128,7 +140,7 @@ if timer[1] &gt; 0 {
             <string>if inhand = true {
     move_towards_point(mouse_x,mouse_y,speed);
     inhand = false;
-    timer[0] = 0.50*60;
+    timer[0] = 0.35*60;
     timer[1] = 0.25*60;
     image_speed = 1*delta;
     canback = false;

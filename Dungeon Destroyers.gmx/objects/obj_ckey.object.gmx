@@ -32,11 +32,19 @@ if timer[0] &gt; 0 {
     grab = true;
 }
 
+//Bounce off obstacles
+if place_meeting(x,y,obj_block) {move_bounce_solid(1)}
+if place_meeting(x,y,obj_rock) {move_bounce_solid(1)}
+
 if grab = true &amp;&amp; place_meeting(x,y,obj_player) {
     instance_destroy();
     global.ckey += 1
-    sound_play(snd_findkey);
+    audio_emitter_pitch(audio_em, random_range(.8,1.2));
+    audio_play_sound_on(audio_em,snd_findkey,false,10);
 }
+
+//Set the friction
+friction = 0.05*delta
 </string>
           </argument>
         </arguments>

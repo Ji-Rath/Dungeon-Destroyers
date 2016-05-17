@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>canhit = true
 image_speed = .05*delta
-hp = 12;
+hp = 8;
 alarm[3] = 2*fps_real
 spd = 1.25;
 normalspd = spd;

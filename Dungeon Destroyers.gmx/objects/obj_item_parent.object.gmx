@@ -57,7 +57,7 @@ direction = random(360);
             <string>///Step event
 
 //Set the friction
-friction = 0.025*delta
+friction = 0.05*delta
 
 //Timer 0 handling
 if timer[0] &gt; 0 {
@@ -67,11 +67,14 @@ if timer[0] &gt; 0 {
 }
 
 //If the player wants to pickup the item
-if keyboard_check_pressed(vk_space) &amp;&amp; grab = true {
+if keyboard_check_pressed(vk_space) &amp;&amp; grab = true &amp;&amp; place_meeting(x,y,obj_player) {
     var i;
     instance_destroy();
+    if item != "" {
+    with (obj_weapon_parent) {instance_destroy();}
     i = instance_create(x,y,item)
-    itemname = i.itemname;
+    i.itemname = itemname;
+    }
 }
 
 //Bounce off obstacles

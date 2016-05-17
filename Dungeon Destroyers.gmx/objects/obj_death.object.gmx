@@ -26,7 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>image_angle = random(1000)
-image_speed = .35*delta
 pl_light_init(40, c_aqua, image_alpha - 0.5);
 </string>
           </argument>
@@ -50,7 +49,9 @@ pl_light_init(40, c_aqua, image_alpha - 0.5);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if image_index &gt; 10 {
+            <string>image_speed = .35*delta
+
+if image_index &gt; 10 {
     image_alpha -= 0.02
     pl_light_set_alpha(image_alpha - 0.5);
 }
