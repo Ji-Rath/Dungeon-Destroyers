@@ -31,10 +31,10 @@ if instance_exists(obj_player)
     draw_set_color(c_white);
     draw_set_font(fnt_medium);
     draw_set_halign(fa_right);
-    draw_text(view_xview[0]+512-20,view_yview[0]+20,"Keys: "+string(global.ckey));
+    draw_text(view_xview[0]+view_wview[0]/2-20,view_yview[0]+20,"Keys: "+string(global.ckey));
     if instance_exists(obj_weapon_parent) {i = obj_weapon_parent.durability; b=obj_weapon_parent.itemname}
     draw_set_halign(fa_left);
-    draw_text(view_xview[0]+512+20,view_yview[0]+20,b);
+    draw_text(view_xview[0]+view_wview[0]/2+20,view_yview[0]+20,b);
     draw_healthbar(view_xview[0] + 20,view_yview + 40,view_xview + 140,view_yview + 45,i,0,c_orange,c_orange,0,false,false)
     draw_healthbar(view_xview[0] + 20,view_yview + 30,view_xview + 140,view_yview + 35,obj_player.hp,0,c_green,c_green,0,false,false)
     if global.dkey = 0 {draw_sprite(spr_keyhole,0,view_xview[0]+512,view_yview[0]+21)}

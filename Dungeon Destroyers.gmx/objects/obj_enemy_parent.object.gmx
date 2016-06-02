@@ -33,6 +33,7 @@ timer[2] = 0;
 timer[3] = 0;
 state = states.idol;
 dir = random(360);
+name = ""
 </string>
           </argument>
         </arguments>
@@ -149,15 +150,15 @@ if canhit = true
     if object_index = obj_skeleton
     {
         bone = instance_create(x,y,obj_skeleton_hit)
-        bone.friction = 0.1*delta
+        bone.friction = 0.06*delta
         bone.direction = random(360)
         bone.speed = 3*delta
         bone = instance_create(x,y,obj_skeleton_hit)
-        bone.friction = 0.1*delta
+        bone.friction = 0.06*delta
         bone.direction = random(360)
         bone.speed = 3*delta
         bone = instance_create(x,y,obj_skeleton_hit)
-        bone.friction = 0.1*delta
+        bone.friction = 0.06*delta
         bone.direction = random(360)
         bone.speed = 3*delta
     }
@@ -200,8 +201,8 @@ if canhit = true
             <string>var i = irandom(12), bone;
 if canhit = true &amp;&amp; other.damage &gt; 0
 {
-    if other.object_index = obj_boomerrang {if other.inhand = true {exit;}}
-    if other.object_index = obj_katana {if other.swinging = false {exit;}}
+    if object_get_name(other) = obj_boomerrang {if other.inhand = true {exit;}}
+    if object_get_name(other) = obj_katana {if other.swinging = false {exit;}}
     canhit = false
     timer[1] = 0.125*60
     spd -= 2
@@ -213,15 +214,15 @@ if canhit = true &amp;&amp; other.damage &gt; 0
     if object_index = obj_skeleton
     {
         bone = instance_create(x,y,obj_skeleton_hit)
-        bone.friction = 0.1*delta
+        bone.friction = 0.06*delta
         bone.direction = random(360)
         bone.speed = 3*delta
         bone = instance_create(x,y,obj_skeleton_hit)
-        bone.friction = 0.1*delta
+        bone.friction = 0.06*delta
         bone.direction = random(360)
         bone.speed = 3*delta
         bone = instance_create(x,y,obj_skeleton_hit)
-        bone.friction = 0.1*delta
+        bone.friction = 0.06*delta
         bone.direction = random(360)
         bone.speed = 3*delta
     }

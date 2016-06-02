@@ -67,7 +67,7 @@ if timer[0] &gt; 0 {
 }
 
 //If the player wants to pickup the item
-if keyboard_check_pressed(vk_space) &amp;&amp; grab = true &amp;&amp; place_meeting(x,y,obj_player) {
+if keyboard_check_pressed(global.pickup) &amp;&amp; grab = true &amp;&amp; place_meeting(x,y,obj_player) {
     var i;
     instance_destroy();
     if item != "" {

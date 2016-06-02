@@ -53,7 +53,7 @@ spd = 0;
             <string>image_alpha -= .02*delta
 speed = spd*delta
 
-if image_alpha &lt; 0.1 {
+if image_alpha &lt; 0.05 {
     instance_destroy();
 }
 

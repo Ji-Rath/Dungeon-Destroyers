@@ -17,13 +17,13 @@ if (!updatecheck) { //Check the local version and web version to determine if th
         file_text_close(webversion); //Closes the file - This Is Important!!
     }
     
-    //Check and save the patch notes
+    /*Check and save the patch notes
     if file_exists(patchlocal) { //Check to see if the file exists
         var notes; //Set a temporary variable
         notes = file_text_open_read(patchlocal); //Open the file
         patchnotes = file_text_read_string(notes); //Read the file
         file_text_close(notes); //Closes the file - This Is Important!!
-    }
+    }*/
     
     if (file_exists(localpath)) && (file_exists(webtemp)) {
         updatecheck = true;

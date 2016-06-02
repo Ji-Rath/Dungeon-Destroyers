@@ -77,7 +77,7 @@ if keyboard_check_pressed(vk_space) &amp;&amp; collected = false &amp;&amp; plac
     if irandom(6) = 0 {
         instance_create(x,y,obj_ckey)
     } else
-    if irandom(6) = 0 {
+    if irandom(4) = 0 {
         instance_create(x,y,obj_potion_regen)
     } else
     if irandom(6) = 0 {

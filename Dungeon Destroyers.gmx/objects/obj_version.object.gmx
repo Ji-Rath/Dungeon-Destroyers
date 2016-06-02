@@ -30,9 +30,9 @@
 localpath = 'version.txt';
 webpath = 'http://irondagger.netau.net/version.html'; //http://www.nitrousclan.com/gml/testing/version.txt
 webtemp = 'temp\version.txt';
-patchpath = 'http://irondagger.netau.net/notes.html';
-patchtemp = 'temp\notes.txt';
-patchlocal = 'notes.txt'
+//patchpath = 'http://irondagger.netau.net/notes.html';
+//patchtemp = 'temp\notes.txt';
+//patchlocal = 'notes.txt'
 http_get_file(webpath,webtemp);
 //http_get_file(patchpath,patchtemp);
 //http_get_file(patchpath,patchlocal);

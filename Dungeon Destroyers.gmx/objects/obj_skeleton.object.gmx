@@ -32,6 +32,7 @@ image_speed = .1*delta
 hp = 6
 shoot = true
 damage = 10
+name = "Skeleton"
 event_inherited();
 </string>
           </argument>

@@ -32,6 +32,7 @@ hp = 5
 canhit = true
 damage = 10
 event_inherited()
+name = "Spirit"
 pl_light_init(50, c_aqua, 0.6);
 </string>
           </argument>

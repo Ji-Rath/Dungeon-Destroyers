@@ -32,6 +32,7 @@ alarm[3] = 2*fps_real
 spd = 1.25;
 normalspd = spd;
 damage = 0;
+name = "Rat"
 event_inherited()
 </string>
           </argument>

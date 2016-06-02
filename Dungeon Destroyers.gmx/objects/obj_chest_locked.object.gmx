@@ -88,7 +88,7 @@ if keyboard_check_pressed(vk_space) &amp;&amp; collected = false &amp;&amp; glob
     if irandom(5) = 0 {
         instance_create(x,y,obj_potion_durability)
     }
-    if irandom(5) = 0 {
+    if irandom(4) = 0 {
         instance_create(x,y,obj_potion_regen)
     }
     if irandom(8) = 0 {

@@ -30,6 +30,7 @@ canhit = true
 spd = 0.9
 normalspd = spd
 damage = 20
+name = "Big Slime"
 event_inherited()
 </string>
           </argument>

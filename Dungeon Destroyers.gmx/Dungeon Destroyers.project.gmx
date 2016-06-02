@@ -26,9 +26,8 @@
     <extension index="0">extensions\Draw Sprite Shadow</extension>
     <extension index="1">extensions\Pause Extension</extension>
     <extension index="2">extensions\Better Instance Deactivate</extension>
-    <extension index="3">extensions\Easy Mobile Controls</extension>
-    <extension index="4">extensions\prettylight</extension>
-    <extension index="5">extensions\Simple Version Checker</extension>
+    <extension index="3">extensions\prettylight</extension>
+    <extension index="4">extensions\Simple Version Checker</extension>
   </NewExtensions>
   <sounds name="sound">
     <sound>sound\snd_boss</sound>
@@ -75,6 +74,7 @@
     <sprite>sprites\spr_block</sprite>
     <sprite>sprites\spr_button</sprite>
     <sprite>sprites\spr_chest</sprite>
+    <sprite>sprites\spr_chest_locked</sprite>
     <sprite>sprites\spr_Crit</sprite>
     <sprite>sprites\spr_crit_potion</sprite>
     <sprite>sprites\spr_cursor</sprite>
@@ -85,7 +85,6 @@
     <sprite>sprites\spr_hud</sprite>
     <sprite>sprites\spr_hurt</sprite>
     <sprite>sprites\spr_keyhole</sprite>
-    <sprite>sprites\spr_chest_locked</sprite>
     <sprite>sprites\spr_LOGO</sprite>
     <sprite>sprites\sprite50</sprite>
     <sprite>sprites\spr_icon</sprite>
@@ -101,8 +100,8 @@
     <sprite>sprites\spr_spikes</sprite>
     <sprite>sprites\spr_spotion_effect</sprite>
     <sprite>sprites\spr_exit</sprite>
-    <sprite>sprites\spr_dpad</sprite>
     <sprite>sprites\spr_sprite_sheet</sprite>
+    <sprite>sprites\spr_trail</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_repeat</background>
@@ -237,7 +236,6 @@
     <object>objects\obj_control</object>
     <object>objects\obj_criticalhit</object>
     <object>objects\obj_death</object>
-    <object>objects\obj_dpad</object>
     <object>objects\obj_hit</object>
     <object>objects\obj_hud</object>
     <object>objects\obj_hurt</object>
@@ -248,7 +246,6 @@
     <object>objects\obj_note</object>
     <object>objects\obj_pause</object>
     <object>objects\obj_poop</object>
-    <object>objects\obj_controlsettings</object>
     <object>objects\obj_version</object>
     <object>objects\parent_dont_pause</object>
   </objects>

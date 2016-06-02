@@ -3,12 +3,12 @@
   <type>0</type>
   <xorig>0</xorig>
   <yorigin>4</yorigin>
-  <colkind>0</colkind>
+  <colkind>1</colkind>
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
-  <bboxmode>2</bboxmode>
+  <bboxmode>0</bboxmode>
   <bbox_left>1</bbox_left>
-  <bbox_right>11</bbox_right>
+  <bbox_right>14</bbox_right>
   <bbox_top>3</bbox_top>
   <bbox_bottom>5</bbox_bottom>
   <HTile>0</HTile>

@@ -37,7 +37,7 @@ if global.right = "39" {
 if global.right = "37" {
     global.righttext = "ARROW_KEY LEFT"
 }
-
+//Key left
 if global.left = "38" {
     global.lefttext = "ARROW_KEY UP"
 }
@@ -49,4 +49,8 @@ if global.left = "39" {
 }
 if global.left = "37" {
     global.lefttext = "ARROW_KEY LEFT"
+}
+//Key pickup
+if global.pickup = "32" {
+    global.pickuptext = "SPACEBAR"
 }
