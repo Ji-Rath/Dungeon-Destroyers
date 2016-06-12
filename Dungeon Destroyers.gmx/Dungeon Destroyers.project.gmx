@@ -88,7 +88,7 @@
     <sprite>sprites\spr_hurt</sprite>
     <sprite>sprites\spr_keyhole</sprite>
     <sprite>sprites\spr_LOGO</sprite>
-    <sprite>sprites\sprite50</sprite>
+    <sprite>sprites\spr_player_new</sprite>
     <sprite>sprites\spr_icon</sprite>
     <sprite>sprites\spr_LOGO2</sprite>
     <sprite>sprites\spr_pause</sprite>
@@ -104,6 +104,9 @@
     <sprite>sprites\spr_exit</sprite>
     <sprite>sprites\spr_sprite_sheet</sprite>
     <sprite>sprites\spr_trail</sprite>
+    <sprite>sprites\spr_player_type</sprite>
+    <sprite>sprites\spr_player_heads</sprite>
+    <sprite>sprites\spr_player_run</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_repeat</background>

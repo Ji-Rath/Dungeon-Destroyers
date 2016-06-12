@@ -197,11 +197,11 @@ draw_set_valign(fa_middle);
 if changekeys = true {
     draw_text(room_width/2, room_height/2 - 80, "Press a key to move: " + string(key))
 } else {
-    draw_text(room_width/2, room_height/2 - 100, "Up: " + string(chr(global.uptext)))
-    draw_text(room_width/2, room_height/2 - 80, "Down: " + string(chr(global.downtext)))
-    draw_text(room_width/2, room_height/2 - 60, "Left: " + string(chr(global.lefttext)))
-    draw_text(room_width/2, room_height/2 - 40, "Right: " + string(chr(global.righttext)))
-    draw_text(room_width/2, room_height/2 - 20, "Pickup Item: " + string(chr(global.pickuptext)))
+    draw_text(room_width/2, room_height/2 - 100, "Up: " + string(global.uptext))
+    draw_text(room_width/2, room_height/2 - 80, "Down: " + string(global.downtext))
+    draw_text(room_width/2, room_height/2 - 60, "Left: " + string(global.lefttext))
+    draw_text(room_width/2, room_height/2 - 40, "Right: " + string(global.righttext))
+    draw_text(room_width/2, room_height/2 - 20, "Pickup Item: " + string(global.pickuptext))
 }
 
 if hover = true {
