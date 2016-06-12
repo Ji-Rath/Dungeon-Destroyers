@@ -72,7 +72,8 @@ if object_index != obj_spirit {
 switch (state) {
 case states.idol: scr_enemy_idol(); break;
 case states.follow: scr_enemy_follow(); break;
-case states.skeleton: scr_enemy_skele_follow(); break;
+case states.skeleton: scr_enemy_skeleton_follow(); break;
+case states.goblin_bowman: scr_enemy_goblin_bowman_follow(); break;
 }
  
 //Speed handling
@@ -163,70 +164,6 @@ if canhit = true
         bone.speed = 3*delta
     }
     if timer[2] = -1 {timer[2] = 0.2*60}
-    if i = 0
-    {
-        hp -= other.damage * 2
-        instance_create(x,y,obj_criticalhit)
-    }
-    else {hp -= other.damage}
-    
-    if obj_player.crit = true &amp;&amp; irandom(1) = 0
-    {
-        hp -= other.damage * 2
-        instance_create(x,y,obj_criticalhit)
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_weapon_parent">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>var i = irandom(12), bone;
-if canhit = true &amp;&amp; other.damage &gt; 0
-{
-    if object_get_name(other) = obj_boomerrang {if other.inhand = true {exit;}}
-    if object_get_name(other) = obj_katana {if other.swinging = false {exit;}}
-    canhit = false
-    timer[1] = 0.125*60
-    spd -= 2
-    audio_emitter_pitch(audio_em, random_range(.7,1.3));
-    audio_play_sound_on(audio_em,snd_hurt,false,10);
-    direction = other.direction
-    instance_create(other.x+random_range(-10,10),other.y+random_range(-10,10),obj_hit)
-    if object_index != obj_spirit {other.back = true;}
-    if object_index = obj_skeleton
-    {
-        bone = instance_create(x,y,obj_skeleton_hit)
-        bone.friction = 0.06*delta
-        bone.direction = random(360)
-        bone.speed = 3*delta
-        bone = instance_create(x,y,obj_skeleton_hit)
-        bone.friction = 0.06*delta
-        bone.direction = random(360)
-        bone.speed = 3*delta
-        bone = instance_create(x,y,obj_skeleton_hit)
-        bone.friction = 0.06*delta
-        bone.direction = random(360)
-        bone.speed = 3*delta
-    }
-    if timer[2] = -1 {timer[2] = 0.1*60}
     if i = 0
     {
         hp -= other.damage * 2

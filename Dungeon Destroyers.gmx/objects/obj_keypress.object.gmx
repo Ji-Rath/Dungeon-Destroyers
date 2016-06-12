@@ -50,15 +50,7 @@ hover = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ini_open("Settings.ini");
-global.up = ini_read_string("Controls", "Up", ord('W'))
-global.down = ini_read_string("Controls", "Down", ord('S'))
-global.left = ini_read_string("Controls", "Left", ord('A'))
-global.right = ini_read_string("Controls", "Right", ord('D'))
-global.pickup = ini_read_string("Controls", "PickupItem", vk_space)
-ini_close();
-
-scr_keycheck();
+            <string>scr_keycheck();
 
 changekeys = false;
 key = "UP"
@@ -92,36 +84,36 @@ if changekeys = true {
     ini_open("Settings.ini");
     if keyboard_check_pressed(vk_anykey) &amp;&amp; key = "UP" {
         global.up = keyboard_lastkey
-        global.uptext = chr(global.up)
-        ini_write_string("Controls", "Up", string(global.up))
+        global.uptext = global.up
+        ini_write_real("Controls", "Up", global.up)
         key = "DOWN"
         exit;
     }
     if keyboard_check_pressed(vk_anykey) &amp;&amp; key = "DOWN" {
         global.down = keyboard_lastkey
-        global.downtext = chr(global.down)
-        ini_write_string("Controls", "Down", string(global.down))
+        global.downtext = global.down
+        ini_write_real("Controls", "Down", global.down)
         key = "LEFT"
         exit;
     }
     if keyboard_check_pressed(vk_anykey) &amp;&amp; key = "LEFT" {
         global.left = keyboard_lastkey
-        global.lefttext = chr(global.left)
-        ini_write_string("Controls", "Left", string(global.left))
+        global.lefttext = global.left
+        ini_write_real("Controls", "Left", global.left)
         key = "RIGHT"
         exit;
     }
     if keyboard_check_pressed(vk_anykey) &amp;&amp; key = "RIGHT" {
         global.right = keyboard_lastkey
-        global.righttext = chr(global.right)
-        ini_write_string("Controls", "Right", string(global.right))
+        global.righttext = global.right
+        ini_write_real("Controls", "Right", global.right)
         key = "PICKUP ITEM"
         exit;
     }
     if keyboard_check_pressed(vk_anykey) &amp;&amp; key = "PICKUP ITEM" {
         global.pickup = keyboard_lastkey
-        global.pickuptext = chr(global.pickup)
-        ini_write_string("Controls", "PickupItem", string(global.pickup))
+        global.pickuptext = global.pickup
+        ini_write_real("Controls", "PickupItem", global.pickup)
         key = "DONE!"
         if alarm[0] = -1 {
         alarm[0] = 1.5*room_speed
@@ -205,11 +197,11 @@ draw_set_valign(fa_middle);
 if changekeys = true {
     draw_text(room_width/2, room_height/2 - 80, "Press a key to move: " + string(key))
 } else {
-    draw_text(room_width/2, room_height/2 - 100, "UP: " + global.uptext)
-    draw_text(room_width/2, room_height/2 - 80, "DOWN: " + global.downtext)
-    draw_text(room_width/2, room_height/2 - 60, "LEFT: " + global.lefttext)
-    draw_text(room_width/2, room_height/2 - 40, "RIGHT: " + global.righttext)
-    draw_text(room_width/2, room_height/2 - 20, "PICKUP ITEM: " + global.pickuptext)
+    draw_text(room_width/2, room_height/2 - 100, "Up: " + string(chr(global.uptext)))
+    draw_text(room_width/2, room_height/2 - 80, "Down: " + string(chr(global.downtext)))
+    draw_text(room_width/2, room_height/2 - 60, "Left: " + string(chr(global.lefttext)))
+    draw_text(room_width/2, room_height/2 - 40, "Right: " + string(chr(global.righttext)))
+    draw_text(room_width/2, room_height/2 - 20, "Pickup Item: " + string(chr(global.pickuptext)))
 }
 
 if hover = true {

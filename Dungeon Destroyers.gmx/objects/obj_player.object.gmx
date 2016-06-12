@@ -27,7 +27,6 @@
             <kind>1</kind>
             <string>///Init Variables
 shake = 0
-instance_create(x,y,obj_dagger); //Item to spawn with
 overlay = false
 image_speed = 0
 canhit = true

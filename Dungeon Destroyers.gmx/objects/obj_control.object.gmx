@@ -37,16 +37,16 @@ globalvar audio_em;
 audio_em = audio_emitter_create();
 
 ini_open("Settings.ini");
-global.up = ini_read_string("Controls", "Up", ord('W'))
-global.down = ini_read_string("Controls", "Down", ord('S'))
-global.left = ini_read_string("Controls", "Left", ord('A'))
-global.right = ini_read_string("Controls", "Right", ord('D'))
-global.pickup = ini_read_string("Controls", "PickupItem", vk_space)
-global.uptext = chr(global.up)
-global.downtext = chr(global.down)
-global.righttext = chr(global.right)
-global.lefttext = chr(global.left)
-global.pickuptext = chr(global.pickup)
+global.up = ini_read_real("Controls", "Up", keyboard_get_map("W"))
+global.down = ini_read_real("Controls", "Down", keyboard_get_map("S"))
+global.left = ini_read_real("Controls", "Left", keyboard_get_map("A"))
+global.right = ini_read_real("Controls", "Right", keyboard_get_map("D"))
+global.pickup = ini_read_real("Controls", "PickupItem", keyboard_get_map(vk_space))
+global.uptext = global.up
+global.downtext = global.down
+global.lefttext = global.left
+global.righttext = global.right
+global.pickuptext = global.pickup
 ini_close();
 
 scr_keycheck();

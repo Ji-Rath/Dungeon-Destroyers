@@ -1,56 +1,84 @@
-//Key up
-if global.up = "38" {
-    global.uptext = "ARROW_KEY UP"
+switch(global.up)
+{
+    case vk_up:
+        global.uptext = "Up key"
+        break;
+    case vk_down:
+        global.uptext = "Down key"
+        break;
+    case vk_left:
+        global.uptext = "Left key"
+        break;
+    case vk_right:
+        global.uptext = "Right key"
+        break;
+    case vk_space:
+        global.uptext = "Spacebar"
+        break;
+    case vk_control:
+        global.uptext = "Control"
+        break;
+    default:
+        global.uptext = "Error"
+        break;
 }
-if global.up = "40" {
-    global.uptext = "ARROW_KEY DOWN"
+switch(global.down)
+{
+    case vk_up:
+        global.downtext = "Up key"
+    case vk_down:
+        global.downtext = "Down key"
+    case vk_left:
+        global.downtext = "Left key"
+    case vk_right:
+        global.downtext = "Right key"
+    case vk_space:
+        global.downtext = "Spacebar"
+    case vk_control:
+        global.downtext = "Control"
 }
-if global.up = "39" {
-    global.uptext = "ARROW_KEY RIGHT"
+switch(global.left)
+{
+    case vk_up:
+        global.lefttext = "Up key"
+    case vk_down:
+        global.lefttext = "Down key"
+    case vk_left:
+        global.lefttext = "Left key"
+    case vk_right:
+        global.lefttext = "Right key"
+    case vk_space:
+        global.lefttext = "Spacebar"
+    case vk_control:
+        global.lefttext = "Control"
 }
-if global.up = "37" {
-    global.uptext = "ARROW_KEY LEFT"
+switch(global.right)
+{
+    case vk_up:
+        global.righttext = "Up key"
+    case vk_down:
+        global.righttext = "Down key"
+    case vk_left:
+        global.righttext = "Left key"
+    case vk_right:
+        global.righttext = "Right key"
+    case vk_space:
+        global.righttext = "Spacebar"
+    case vk_control:
+        global.righttext = "Control"
 }
-//Key down
-if global.down = "38" {
-    global.downtext = "ARROW_KEY UP"
-}
-if global.down = "40" {
-    global.downtext = "ARROW_KEY DOWN"
-}
-if global.down = "39" {
-    global.downtext = "ARROW_KEY RIGHT"
-}
-if global.down = "37" {
-    global.downtext = "ARROW_KEY LEFT"
-}
-//Key right
-if global.right = "38" {
-    global.righttext = "ARROW_KEY UP"
-}
-if global.right = "40" {
-    global.righttext = "ARROW_KEY DOWN"
-}
-if global.right = "39" {
-    global.righttext = "ARROW_KEY RIGHT"
-}
-if global.right = "37" {
-    global.righttext = "ARROW_KEY LEFT"
-}
-//Key left
-if global.left = "38" {
-    global.lefttext = "ARROW_KEY UP"
-}
-if global.left = "40" {
-    global.lefttext = "ARROW_KEY DOWN"
-}
-if global.left = "39" {
-    global.lefttext = "ARROW_KEY RIGHT"
-}
-if global.left = "37" {
-    global.lefttext = "ARROW_KEY LEFT"
-}
-//Key pickup
-if global.pickup = "32" {
-    global.pickuptext = "SPACEBAR"
+switch(global.pickup)
+{
+    case vk_up:
+        global.pickuptext = "Up key"
+    case vk_down:
+        global.pickuptext = "Down key"
+    case vk_left:
+        global.pickuptext = "Left key"
+    case vk_right:
+        global.pickuptext = "Right key"
+    case vk_space:
+        global.pickuptext = "Spacebar"
+    case vk_control:
+        global.pickuptext = "Control"
 }

@@ -114,7 +114,8 @@
       <script>scripts\scr_keycheck.gml</script>
       <script>scripts\scr_enemy_idol.gml</script>
       <script>scripts\scr_enemy_follow.gml</script>
-      <script>scripts\scr_enemy_skele_follow.gml</script>
+      <script>scripts\scr_enemy_skeleton_follow.gml</script>
+      <script>scripts\scr_enemy_goblin_bowman_follow.gml</script>
     </scripts>
     <scripts name="Other Scripts">
       <script>scripts\scr_dungeon_walls.gml</script>
@@ -172,23 +173,8 @@
     <font>fonts\fnt_small</font>
   </fonts>
   <objects name="objects">
-    <objects name="Weapons">
-      <object>objects\obj_weapon_parent</object>
-      <object>objects\obj_boomerrang</object>
-      <object>objects\obj_bow</object>
-      <object>objects\obj_sbow</object>
-      <object>objects\obj_katana</object>
-      <object>objects\obj_dagger</object>
-      <object>objects\obj_melee</object>
-      <object>objects\obj_swing</object>
-    </objects>
     <objects name="Items">
       <object>objects\obj_item_parent</object>
-      <object>objects\obj_katana_item</object>
-      <object>objects\obj_dagger_item</object>
-      <object>objects\obj_boomerrang_item</object>
-      <object>objects\obj_bow_item</object>
-      <object>objects\obj_sbow_item</object>
       <object>objects\obj_potion_healing</object>
       <object>objects\obj_potion_regen</object>
       <object>objects\obj_potion_durability</object>
@@ -207,6 +193,7 @@
       <object>objects\obj_slime2</object>
       <object>objects\obj_spikeball</object>
       <object>objects\obj_spirit</object>
+      <object>objects\obj_poop</object>
     </objects>
     <objects name="Chests/Blocks">
       <object>objects\obj_chest_locked</object>
@@ -241,7 +228,6 @@
     <object>objects\obj_epotion_regen</object>
     <object>objects\obj_control</object>
     <object>objects\obj_criticalhit</object>
-    <object>objects\obj_poop</object>
     <object>objects\obj_hit</object>
     <object>objects\obj_death</object>
     <object>objects\obj_hud</object>
