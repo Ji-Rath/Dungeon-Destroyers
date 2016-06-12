@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>///Init Variables
 shake = 0
-instance_create(x,y,obj_boomerrang); //Item to spawn with
+instance_create(x,y,obj_dagger); //Item to spawn with
 overlay = false
 image_speed = 0
 canhit = true
@@ -101,7 +101,9 @@ with (obj_floor)
             if irandom(10) = 0 {instance_create(x+16,y+16,obj_skeleton)} else
             if irandom(6) = 0 {instance_create(x+16,y+16,obj_ratman)} else
             if irandom(9) = 0 {instance_create(x+16,y+16,obj_goblin)} else
-            if irandom(10) = 0 {instance_create(x+16,y+16,obj_slime2)}
+            if irandom(10) = 0 {instance_create(x+16,y+16,obj_slime2)} else
+            if irandom(9) = 0 {instance_create(x+16,y+16,obj_goblin_soldier)} else
+            if irandom(9) = 0 {instance_create(x+16,y+16,obj_goblin_bowman)}
         }
     if instance_number(obj_slime) = 0 {instance_create(x+16,y+16,obj_slime)}
     if instance_number(obj_spikeball) = 0 {instance_create(x+16,y+16,obj_spikeball)}
@@ -109,6 +111,8 @@ with (obj_floor)
     if instance_number(obj_skeleton) = 0 {instance_create(x+16,y+16,obj_skeleton)}
     if instance_number(obj_ratman) = 0 {instance_create(x+16,y+16,obj_ratman)}
     if instance_number(obj_goblin) = 0 {instance_create(x+16,y+16,obj_goblin)}
+    if instance_number(obj_goblin_bowman) = 0 {instance_create(x+16,y+16,obj_goblin_bowman)}
+    if instance_number(obj_goblin_soldier) = 0 {instance_create(x+16,y+16,obj_goblin_soldier)}
     }
 }
 </string>

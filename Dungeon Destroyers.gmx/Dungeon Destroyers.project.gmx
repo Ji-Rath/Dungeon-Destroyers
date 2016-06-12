@@ -52,6 +52,7 @@
       <sprite>sprites\spr_bow_item</sprite>
       <sprite>sprites\spr_katana</sprite>
       <sprite>sprites\spr_spear</sprite>
+      <sprite>sprites\spr_dagger</sprite>
       <sprite>sprites\spr_potion_crit</sprite>
       <sprite>sprites\spr_potion_durability</sprite>
       <sprite>sprites\spr_potion_heal</sprite>
@@ -67,6 +68,7 @@
       <sprite>sprites\spr_spikeball</sprite>
       <sprite>sprites\spr_spirit</sprite>
       <sprite>sprites\spr_goblin</sprite>
+      <sprite>sprites\spr_goblin_soldier</sprite>
       <sprite>sprites\spr_ratman</sprite>
     </sprites>
     <sprite>sprites\spr_player</sprite>
@@ -176,12 +178,14 @@
       <object>objects\obj_bow</object>
       <object>objects\obj_sbow</object>
       <object>objects\obj_katana</object>
+      <object>objects\obj_dagger</object>
       <object>objects\obj_melee</object>
       <object>objects\obj_swing</object>
     </objects>
     <objects name="Items">
       <object>objects\obj_item_parent</object>
       <object>objects\obj_katana_item</object>
+      <object>objects\obj_dagger_item</object>
       <object>objects\obj_boomerrang_item</object>
       <object>objects\obj_bow_item</object>
       <object>objects\obj_sbow_item</object>
@@ -195,6 +199,8 @@
     <objects name="Monsters">
       <object>objects\obj_enemy_parent</object>
       <object>objects\obj_goblin</object>
+      <object>objects\obj_goblin_soldier</object>
+      <object>objects\obj_goblin_bowman</object>
       <object>objects\obj_ratman</object>
       <object>objects\obj_skeleton</object>
       <object>objects\obj_slime</object>
@@ -235,17 +241,17 @@
     <object>objects\obj_epotion_regen</object>
     <object>objects\obj_control</object>
     <object>objects\obj_criticalhit</object>
-    <object>objects\obj_death</object>
+    <object>objects\obj_poop</object>
     <object>objects\obj_hit</object>
+    <object>objects\obj_death</object>
     <object>objects\obj_hud</object>
+    <object>objects\obj_pause</object>
     <object>objects\obj_hurt</object>
     <object>objects\obj_intro_effect</object>
+    <object>objects\obj_loadingscreen</object>
     <object>objects\obj_light</object>
     <object>objects\obj_lightcontrol</object>
-    <object>objects\obj_loadingscreen</object>
     <object>objects\obj_note</object>
-    <object>objects\obj_pause</object>
-    <object>objects\obj_poop</object>
     <object>objects\obj_version</object>
     <object>objects\parent_dont_pause</object>
   </objects>
