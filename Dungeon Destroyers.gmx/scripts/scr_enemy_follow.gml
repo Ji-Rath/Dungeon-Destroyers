@@ -16,6 +16,6 @@ if timer[0] > 0 {
 } else {
     if distance_to_object(obj_player) >= 150 {
         speed = 0;
-        state = states.idol;
+        state = enemystates.idol;
     }
 }

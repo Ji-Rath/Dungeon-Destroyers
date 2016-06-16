@@ -14,5 +14,5 @@ if distance_to_object(obj_player) < 200 {
     }
 } else if distance_to_object(obj_player) >= 200 {
     speed = 0;
-    state = states.idol;
+    state = enemystates.idol;
 }

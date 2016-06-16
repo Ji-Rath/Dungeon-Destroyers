@@ -13,8 +13,8 @@ else {image_xscale = 1;}
 
 if distance_to_object(obj_player) < 150 {
     if sprite_index = spr_ratman {exit;}
-    if sprite_index != spr_skeleton || name != "Goblin Bowman" {state = states.follow; } 
-    else {state = states.skeleton; }
+    if sprite_index != spr_skeleton || name != "Goblin Bowman" {state = enemystates.follow; } 
+    else {state = enemystates.skeleton; }
     speed = 0;
 }
 

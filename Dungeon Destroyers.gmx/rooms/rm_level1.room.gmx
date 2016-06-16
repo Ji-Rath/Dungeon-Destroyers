@@ -10,11 +10,24 @@
   <persistent>0</persistent>
   <colour>0</colour>
   <showcolour>-1</showcolour>
-  <code>enum states {
+  <code>enum enemystates {
     idol,
     follow,
     skeleton,
     goblin_bowman
+}
+
+enum playerstates {
+    normal,
+    priest,
+    mage,
+    footman,
+    archer,
+    knight,
+    snow,
+    lightning,
+    cowboy,
+    ninja
 }</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>

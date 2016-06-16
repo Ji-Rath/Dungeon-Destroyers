@@ -31,7 +31,7 @@ timer[0] = 1;
 timer[1] = 0;
 timer[2] = 0;
 timer[3] = 0;
-state = states.idol;
+state = enemystates.idol;
 dir = random(360);
 name = ""
 </string>
@@ -70,10 +70,10 @@ if object_index != obj_spirit {
 
 //States
 switch (state) {
-case states.idol: scr_enemy_idol(); break;
-case states.follow: scr_enemy_follow(); break;
-case states.skeleton: scr_enemy_skeleton_follow(); break;
-case states.goblin_bowman: scr_enemy_goblin_bowman_follow(); break;
+case enemystates.idol: scr_enemy_idol(); break;
+case enemystates.follow: scr_enemy_follow(); break;
+case enemystates.skeleton: scr_enemy_skeleton_follow(); break;
+case enemystates.goblin_bowman: scr_enemy_goblin_bowman_follow(); break;
 }
  
 //Speed handling
