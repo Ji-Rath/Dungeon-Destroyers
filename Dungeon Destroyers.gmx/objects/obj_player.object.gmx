@@ -41,8 +41,9 @@ regen = false;
 event_inherited();
 hat = 0; //Type of hat
 durability = 0;
-bow = 0
-state = playerstates.archer
+bow = 0;
+angle = 0;
+state = playerstates.mage
 timer[0] = 0
 timer[1] = 0
 timer[2] = 0
@@ -227,6 +228,9 @@ delta = 60/1000000*delta_time;
 //Screen shake handling
 view_angle = random(shake)-shake/2
 if shake &gt; 0 {shake -= 1}
+
+//Weapons point to mouse
+angle = point_direction(x,y,mouse_x,mouse_y)
 
 //Timer 0
 if timer[0] &gt; 0 {
@@ -497,9 +501,9 @@ case playerstates.normal: scr_player_normal(); hat = 0; break;
 case playerstates.archer: scr_player_archer(); hat = 3; break;
 case playerstates.ninja: scr_player_ninja(); hat = 8; break;
 case playerstates.cowboy: scr_player_cowboy(); hat = 7; break;
+case playerstates.mage: scr_player_mage(); hat = 1; break;
 /*
 case playerstates.priest: scr_player_priest(); break;
-case playerstates.mage: scr_player_mage(); break;
 case playerstates.footman: scr_player_footman(); break;
 case playerstates.knight: scr_player_knight(); break;
 case playerstates.snow: scr_player_snow(); break;
@@ -667,11 +671,9 @@ if x &gt; mouse_x {dir = -1;} else {dir = 1;}
 draw_sprite_ext(spr_player_heads,hat,x,y-1,dir,1,0,c_white,1);
 
 if hat = 3 { //If the player is an archer
-    var angle = point_direction(x,y,mouse_x,mouse_y)
     draw_sprite_ext(spr_bow,bow,x+lengthdir_x(8,angle),y+lengthdir_y(8,angle),1,1,angle,c_white,1);
 }
 if hat = 7 { //If the player is a cowboy
-    var angle = point_direction(x,y,mouse_x,mouse_y)
     var dir;
     if obj_player.x &gt; mouse_x {
         dir = -1
@@ -679,6 +681,15 @@ if hat = 7 { //If the player is a cowboy
         dir = 1
     }
     draw_sprite_ext(spr_revolver,bow,x+lengthdir_x(8,angle),y+lengthdir_y(8,angle),1,dir,angle,c_white,1);
+}
+if hat = 1 { //If the player is a mage
+    var dir;
+    if obj_player.x &gt; mouse_x {
+        dir = -1
+    } else {
+        dir = 1
+    }
+    draw_sprite_ext(spr_staff,bow,x+lengthdir_x(8,angle),y+lengthdir_y(8,angle),1,dir,angle,c_white,1);
 }
 </string>
           </argument>

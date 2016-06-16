@@ -71,6 +71,7 @@
       <sprite>sprites\spr_katana</sprite>
       <sprite>sprites\spr_spear</sprite>
       <sprite>sprites\spr_dagger</sprite>
+      <sprite>sprites\spr_staff</sprite>
       <sprite>sprites\spr_potion_crit</sprite>
       <sprite>sprites\spr_potion_durability</sprite>
       <sprite>sprites\spr_potion_heal</sprite>
@@ -81,6 +82,7 @@
       <sprite>sprites\spr_bullet</sprite>
       <sprite>sprites\spr_shuriken</sprite>
       <sprite>sprites\spr_revolver</sprite>
+      <sprite>sprites\spr_fire</sprite>
     </sprites>
     <sprites name="Monsters">
       <sprite>sprites\spr_slime</sprite>
@@ -139,6 +141,7 @@
         <script>scripts\scr_player_normal.gml</script>
         <script>scripts\scr_player_archer.gml</script>
         <script>scripts\scr_player_ninja.gml</script>
+        <script>scripts\scr_player_mage.gml</script>
         <script>scripts\scr_player_cowboy.gml</script>
       </scripts>
       <script>scripts\scr_keycheck.gml</script>
@@ -265,6 +268,7 @@
       <object>objects\obj_projectile_parent</object>
       <object>objects\obj_arrow</object>
       <object>objects\obj_bullet</object>
+      <object>objects\obj_flame</object>
       <object>objects\obj_shuriken</object>
       <object>objects\obj_skeleton_hit</object>
       <object>objects\obj_bone</object>

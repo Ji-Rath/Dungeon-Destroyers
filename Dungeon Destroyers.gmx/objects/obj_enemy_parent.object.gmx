@@ -120,7 +120,7 @@ if timer[3] &gt; 0 {
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_arrow">
+    <event eventtype="4" ename="obj_projectile_parent">
       <action>
         <libid>1</libid>
         <id>603</id>
