@@ -138,8 +138,8 @@ if canhit = true
 {
     canhit = false;
     spd -= 2;
-    timer[1] = 0.5*60;
-    if timer[2] = -1 {timer[2] = 0.2*60}
+    timer[1] = 0.5*60; //Canhit
+    if timer[2] = -1 {timer[2] = 0.2*60} //Knockback
     audio_emitter_pitch(audio_em, random_range(.7,1.3));
     audio_play_sound_on(audio_em,snd_hurt,false,10);
     direction = other.direction
