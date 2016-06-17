@@ -43,7 +43,7 @@ hat = 0; //Type of hat
 durability = 0;
 bow = 0;
 angle = 0;
-state = playerstates.mage
+state = playerstates.normal
 timer[0] = 0
 timer[1] = 0
 timer[2] = 0
@@ -675,20 +675,12 @@ if hat = 3 { //If the player is an archer
 }
 if hat = 7 { //If the player is a cowboy
     var dir;
-    if obj_player.x &gt; mouse_x {
-        dir = -1
-    } else {
-        dir = 1
-    }
+    if obj_player.x &gt; mouse_x {dir = -1;} else {dir = 1;}
     draw_sprite_ext(spr_revolver,bow,x+lengthdir_x(8,angle),y+lengthdir_y(8,angle),1,dir,angle,c_white,1);
 }
 if hat = 1 { //If the player is a mage
     var dir;
-    if obj_player.x &gt; mouse_x {
-        dir = -1
-    } else {
-        dir = 1
-    }
+    if obj_player.x &gt; mouse_x {dir = -1;} else {dir = 1;}
     draw_sprite_ext(spr_staff,bow,x+lengthdir_x(8,angle),y+lengthdir_y(8,angle),1,dir,angle,c_white,1);
 }
 </string>

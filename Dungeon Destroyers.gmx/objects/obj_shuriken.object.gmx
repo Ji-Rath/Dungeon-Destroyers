@@ -53,23 +53,14 @@ damage = 1.5;
 speed = 17*delta
 image_angle += 15
 
-//Collision check
-if place_meeting(x,y,obj_enemy_parent) &amp;&amp; !place_meeting(x,y,obj_spirit) {
-    instance_destroy();
-}
-if place_meeting(x,y,obj_rock) {
-    instance_destroy();
-}
-if place_meeting(x,y,obj_block) {
-    instance_destroy();
-}
-
 //Timer 0
 if timer[0] &gt; 0 {
     timer[0] -= 1*delta
 } else {
     instance_destroy();
 }
+
+event_inherited();
 </string>
           </argument>
         </arguments>

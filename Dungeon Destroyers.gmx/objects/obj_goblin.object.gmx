@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>canhit = true
 image_speed = .1*delta
-hp = 10
+hp = 10;
 spd = 1.1;
 normalspd = spd;
 damage = 15;
